@@ -4,23 +4,29 @@
 
 ---
 
-## ✨ Features Implemented So Far
+## ✨ Features & Technical Achievements
 
-### 1. 🎨 Dynamic State Management (Settings)
-* **Theme Toggling:** Seamless switching between **Light** and **Dark** modes.
-* **Language Selection:** UI implemented for switching between **English** and **Arabic**.
-* **Provider Integration:** Utilizing `Provider` for reactive, efficient, and clean state management across the application.
+### 1. 🎨 Global Theming & Dynamic UI
+* **Dynamic Theme Toggling:** Seamless switching between **Light** and **Dark** modes utilizing a robust, centralized `AppTheme` architecture (`colorScheme`, `inputDecorationTheme`).
+* **Smart UI Components:** Custom built, theme-aware widgets (e.g., `ToggleSwitch`, `CustomBackButton`) that adapt their borders, backgrounds, and text colors dynamically based on the active theme.
+* **Dynamic SVG Coloring:** Implemented seamless theme transitions for vector graphics using `ColorFilter` and `BlendMode.srcIn` to avoid pixelation and hardcoded colors.
+* **Custom Typography:** Integrated and properly configured the **Poppins** font family globally across the application for a premium feel.
 
-### 2. 🚀 Onboarding Flow
-* **Pixel-Perfect UI:** High-fidelity implementation of the Figma design.
-* **Smooth Navigation:** Interactive `PageView` with smooth, animated transitions.
-* **Custom Indicators:** Integrated `smooth_page_indicator` for a modern, worm-effect indicator perfectly positioned using `Stack` and `Align`.
-* **Responsive Layout:** Carefully calculated dimensions using `SizeManager` and dynamic paddings to ensure the UI looks flawless on all screen sizes (preventing overflow on smaller devices).
-* **Reusable Components:** Created highly customizable and reusable core widgets (e.g., `CustomPrimaryButton`, `ToggleSwitch`).
+### 2. 🧠 State & Memory Management
+* **Clean Architecture:** Strictly separated the UI (Presentation) from Business Logic using `StatelessWidget` and `Provider` (`ChangeNotifier`).
+* **Optimized Onboarding Flow:** Interactive `PageView` with smooth transitions and `smooth_page_indicator`, fully managed by an `OnboardingProvider`.
+* **Memory Leak Prevention:** Safely managed the lifecycle of `PageController` by disposing of it correctly within the Provider layer.
+
+### 3. 🌐 Clean Code & Localization Ready
+* **Resource Managers:** Extracted all hardcoded texts and assets into `StringsManager` and `AssetsManager` to enforce DRY principles and prepare the app for seamless multi-language support (English/Arabic).
+* **Responsive Layout:** Carefully calculated dimensions using custom `SizeManager` and dynamic paddings to ensure the UI looks flawless and prevents overflow on all screen sizes.
 
 ---
 
 [//]: # (## 📱 Screenshots)
+
+[//]: # ()
+[//]: # (*&#40;Note: Add your actual screenshot paths below once you capture them!&#41;*)
 
 [//]: # ()
 [//]: # (| Start Screen &#40;Light&#41; | Start Screen &#40;Dark&#41; | Onboarding Screen |)
@@ -30,9 +36,6 @@
 [//]: # (| <img src="assets/readme/start_light.png" width="250"> | <img src="assets/readme/start_dark.png" width="250"> | <img src="assets/readme/onboarding.png" width="250"> |)
 
 [//]: # ()
-[//]: # (*&#40;Note: Add your actual screenshot paths above once you capture them!&#41;*)
-
-[//]: # ()
 [//]: # (---)
 
 ## 🛠️ Tech Stack & Architecture
@@ -40,8 +43,8 @@
 * **Framework:** [Flutter](https://flutter.dev/)
 * **Language:** Dart
 * **State Management:** [Provider](https://pub.dev/packages/provider)
-* **Key Packages:** `smooth_page_indicator`
-* **Architecture:** Feature-first modular approach (`core/`, `features/`, `providers/`) emphasizing **Separation of Concerns** and **Clean Code** principles.
+* **Key Packages:** `smooth_page_indicator`, `flutter_svg`
+* **Architecture:** Feature-first modular approach (`core/`, `features/`, `providers/`) emphasizing **Separation of Concerns**, **DRY**, and **Clean Code** principles.
 
 ---
 
@@ -57,7 +60,7 @@ To get a local copy up and running, follow these simple steps:
 ### Installation
 1. Clone the repo:
    ```sh
-   git clone [https://github.com/saidelhadidi/evently_app.git]
+   git clone [https://github.com/saidelhadidi/evently_app.git](https://github.com/saidelhadidi/evently_app.git)
 ## 👨‍💻 Author
 
 **Said Elhadidi** *GDGoC Egypt Facilitator & Mobile Developer* [LinkedIn](https://www.linkedin.com/in/saidelhadidi/) | [GitHub](https://github.com/saidelhadidi)

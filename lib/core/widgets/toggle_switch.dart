@@ -1,9 +1,8 @@
 import 'package:evently_app/core/resources/size_manager.dart';
-import 'package:evently_app/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ToggleSwitch extends StatelessWidget {
-  ToggleSwitch({
+  const ToggleSwitch({
     super.key,
     required this.choice1,
     required this.choice2,
@@ -16,10 +15,12 @@ class ToggleSwitch extends StatelessWidget {
   final bool isChoice1Selected;
   final Function(bool) onChanged;
 
-  bool isSelected = true;
-
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
+    Color activeColor = primaryColor;
+    final inactiveColor = Theme.of(context).inputDecorationTheme.fillColor ;
+    final strokeColor = Theme.of(context).colorScheme.outline;
     return SizedBox(
       height: SizeManager.getScreenHeight(context) * 0.04,
       child: Row(
@@ -36,15 +37,15 @@ class ToggleSwitch extends StatelessWidget {
 
               alignment: .center,
               decoration: BoxDecoration(
+                border: isChoice1Selected
+                    ? null
+                    : Border.all(color: strokeColor, width: 0.5),
                 borderRadius: .circular(8),
-                color: isChoice1Selected
-                    ? AppTheme.lightMode.primaryColor
-                    : Colors.white,
+                color: isChoice1Selected ? activeColor : inactiveColor,
               ),
               child: choice1,
             ),
           ),
-
           InkWell(
             borderRadius: .circular(8),
             onTap: () {
@@ -54,10 +55,11 @@ class ToggleSwitch extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16),
               alignment: .center,
               decoration: BoxDecoration(
-                borderRadius: .circular(8),
-                color: isChoice1Selected
-                    ? Colors.white
-                    : AppTheme.lightMode.primaryColor,
+                border: isChoice1Selected
+                    ? Border.all(color: strokeColor, width: 0.5)
+                    : null,
+                borderRadius: BorderRadius.circular(8),
+                color: isChoice1Selected ? inactiveColor : activeColor,
               ),
               child: choice2,
             ),

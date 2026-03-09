@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_native_splash: ^2.4.7
   flutter_animate: ^4.5.2
-  flutter_svg: ^2.2.3
+  flutter_svg: ^2.2.4
   provider: ^6.1.5+1
   smooth_page_indicator: ^2.0.1
 
@@ -67,6 +67,7 @@ flutter:
      - assets/icons/
      - assets/images/
      - assets/images/onBoarding/
+     - assets/icons/textFormField/
 #     - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -91,6 +92,13 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+
+  fonts:
+      - family: Poppins
+        fonts:
+          - asset: assets/fonts/Poppins/Poppins-Regular.ttf
+          - asset: assets/fonts/Poppins/Poppins-Bold.ttf
+            weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

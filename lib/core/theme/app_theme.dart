@@ -4,14 +4,15 @@ import 'app_colors.dart';
 class AppTheme {
   // ===================== Light Theme =====================
   static final ThemeData lightMode = ThemeData(
+    fontFamily: 'Poppins',
     useMaterial3: true,
     primaryColor: AppColors.lightMain,
     scaffoldBackgroundColor: AppColors.lightBackground,
 
     colorScheme: const ColorScheme.light(
       primary: AppColors.lightMain,
-      onPrimaryContainer:AppColors.lightMain,
-
+      onPrimaryContainer: AppColors.lightMain,
+      outline: AppColors.lightStroke,
       onSurface: AppColors.lightMainText,
       error: AppColors.lightRed,
     ),
@@ -28,13 +29,11 @@ class AppTheme {
         fontWeight: FontWeight.w600,
         color: AppColors.lightMainText,
       ),
-      bodyLarge: TextStyle(
-        fontSize: 16,
-        color: AppColors.lightMainText,
-      ),
+      bodyLarge: TextStyle(fontSize: 16, color: AppColors.lightMainText),
       bodyMedium: TextStyle(
-        fontSize: 14,
+        fontSize: 16,
         color: AppColors.lightSecText,
+        height: 1.5,
       ),
     ),
 
@@ -75,13 +74,15 @@ class AppTheme {
 
   // ===================== Dark Theme =====================
   static final ThemeData darkMode = ThemeData(
+    fontFamily: 'Poppins',
     useMaterial3: true,
-    primaryColor: AppColors.darkMainText,
+    primaryColor: AppColors.darkMain,
     scaffoldBackgroundColor: AppColors.darkBackground,
 
     colorScheme: const ColorScheme.dark(
+      outline: AppColors.darkStroke,
       primary: AppColors.darkMain,
-      onPrimaryContainer:Colors.white,
+      onPrimaryContainer: Colors.white,
       onSurface: AppColors.darkMainText,
       error: AppColors.darkRed,
     ),
@@ -98,14 +99,8 @@ class AppTheme {
         fontWeight: FontWeight.w600,
         color: AppColors.darkMainText,
       ),
-      bodyLarge: TextStyle(
-        fontSize: 16,
-        color: AppColors.darkMainText,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 14,
-        color: AppColors.darkSecText,
-      ),
+      bodyLarge: TextStyle(fontSize: 16, color: AppColors.darkMainText),
+      bodyMedium: TextStyle(fontSize: 16, color: AppColors.darkSecText),
     ),
 
     // AppBar

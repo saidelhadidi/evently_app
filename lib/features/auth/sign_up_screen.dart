@@ -1,19 +1,19 @@
-import 'package:evently_app/core/resources/assets_manager.dart';
-import 'package:evently_app/core/widgets/custom_primary_button.dart';
-import 'package:evently_app/core/widgets/custom_text_field.dart';
-import 'package:evently_app/features/auth/reset_password_screen.dart';
-import 'package:evently_app/features/auth/sign_up_screen.dart';
-import 'package:evently_app/features/auth/widgets/google_login_button.dart';
+import 'package:evently_app/features/auth/log_in_screen.dart';
+import 'package:evently_app/features/auth/widgets/google_signup_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import '../../core/resources/assets_manager.dart';
 import '../../core/resources/strings_manager.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/widgets/custom_primary_button.dart';
+import '../../core/widgets/custom_text_field.dart';
 import '../../core/widgets/header_image.dart';
 
-class LogInScreen extends StatelessWidget {
-  static const String routeName = "logIn_screen";
+class SignUpScreen extends StatelessWidget {
+  static const String routeName = "signUp_screen";
 
-  const LogInScreen({super.key});
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +28,18 @@ class LogInScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Text(
-                  StringsManager.logInPageTitle,
+                  StringsManager.signUpPageTitle,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
               ),
+              CustomTextField(
+                hintText: StringsManager.userHintText,
+                prefixIcon: SvgPicture.asset(AssetsManager.userIcon),
+              ),
+              const SizedBox(height: 16),
+
               CustomTextField(
                 hintText: StringsManager.mailHintText,
                 prefixIcon: SvgPicture.asset(AssetsManager.mailIcon),
@@ -49,26 +55,18 @@ class LogInScreen extends StatelessWidget {
                 isObscure: true,
               ),
               const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, ResetPasswordScreen.routeName);
-                  },
-                  child: Text(
-                    StringsManager.forgetPassword,
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationColor: Theme.of(context).primaryColor,
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+              CustomTextField(
+                hintText: StringsManager.confirmPasswordHint,
+                prefixIcon: SvgPicture.asset(AssetsManager.passwordIcon),
+                suffixIcon: IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(AssetsManager.eyeIcon),
                 ),
+                isObscure: true,
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 50),
               CustomPrimaryButton(
-                title: StringsManager.logIn,
+                title: StringsManager.signUp,
                 onPressed: () {},
               ),
               const SizedBox(height: 60),
@@ -76,15 +74,18 @@ class LogInScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    StringsManager.dHaveAccount,
+                    StringsManager.haveAccount,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, SignUpScreen.routeName);
+                      Navigator.pushReplacementNamed(
+                        context,
+                        LogInScreen.routeName,
+                      );
                     },
                     child: Text(
-                      StringsManager.signUp,
+                      StringsManager.logIn,
                       style: TextStyle(
                         decoration: TextDecoration.underline,
                         decorationColor: Theme.of(context).primaryColor,
@@ -116,7 +117,7 @@ class LogInScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 24),
-              GoogleLoginButton(),
+              GoogleSignupButton(),
             ],
           ),
         ),

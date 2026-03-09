@@ -1,4 +1,5 @@
 import 'package:evently_app/core/resources/size_manager.dart';
+import 'package:evently_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomPrimaryButton extends StatelessWidget {
@@ -21,11 +22,13 @@ class CustomPrimaryButton extends StatelessWidget {
           onPressed();
         },
         style: FilledButton.styleFrom(
+          overlayColor: Colors.white.withValues(alpha: 0.1),
+          splashFactory: NoSplash.splashFactory,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
         ),
-        child: Text(title),
+        child: Text(title, style: TextStyle(fontSize: 20, color:AppColors.lightInputs)),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:evently_app/core/resources/assets_manager.dart';
-
 class OnBoardingData {
   final String image;
   final String title;
