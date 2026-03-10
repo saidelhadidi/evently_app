@@ -12,6 +12,11 @@ abstract final class AssetsManager {
   static const userIcon = "assets/icons/textFormField/user.svg";
   static const eyeIcon = "assets/icons/textFormField/eye-slash.svg";
   static const resetPassword="assets/images/reset_password.svg";
-
+  static const home="assets/icons/navigationBar/home.svg";
+  static const selectedHome="assets/icons/navigationBar/selectedHome.svg";
+  static const favourite="assets/icons/navigationBar/heart.svg";
+  static const selectedFavourite="assets/icons/navigationBar/selectedHeart.svg";
+  static const profile="assets/icons/navigationBar/profile.svg";
+  static const selectedProfile="assets/icons/navigationBar/selectedProfile.svg";
 
 }

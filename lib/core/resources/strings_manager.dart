@@ -21,4 +21,7 @@ abstract final class StringsManager {
   static const signupWithGoogle = "Sign up with Google";
   static const resetPassword = "Reset password";
   static const resetPasswordScreenTitle = "Forget Password";
+  static const home= "Home";
+  static const favourite="Favorite";
+  static const profile="Profile";
 }

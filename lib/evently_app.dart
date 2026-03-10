@@ -2,6 +2,7 @@ import 'package:evently_app/core/theme/app_theme.dart';
 import 'package:evently_app/features/auth/log_in_screen.dart';
 import 'package:evently_app/features/auth/reset_password_screen.dart';
 import 'package:evently_app/features/auth/sign_up_screen.dart';
+import 'package:evently_app/features/home/home_screen.dart';
 import 'package:evently_app/features/onboarding/onboarding_screen.dart';
 import 'package:evently_app/features/onboarding/start_screen.dart';
 import 'package:evently_app/providers/auth_provider.dart';
@@ -36,9 +37,10 @@ class EventlyApp extends StatelessWidget {
               LogInScreen.routeName:(_)=>LogInScreen(),
               SignUpScreen.routeName:(_)=> SignUpScreen(),
               ResetPasswordScreen.routeName:(_)=>ResetPasswordScreen(),
+              HomeScreen.routeName:(_)=>HomeScreen(),
 
             },
-           initialRoute: StartScreen.routeName,
+           initialRoute: HomeScreen.routeName,
           );
         },
       ),
