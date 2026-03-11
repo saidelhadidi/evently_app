@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^2.2.4
   provider: ^6.1.5+1
   smooth_page_indicator: ^2.0.1
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,9 @@ flutter:
      - assets/images/onBoarding/
      - assets/icons/textFormField/
      - assets/icons/navigationBar/
+     - assets/icons/categories/
+     - assets/images/categories/lightMode/
+     - assets/images/categories/darkMode/
 #     - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

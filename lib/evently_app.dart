@@ -2,10 +2,11 @@ import 'package:evently_app/core/theme/app_theme.dart';
 import 'package:evently_app/features/auth/log_in_screen.dart';
 import 'package:evently_app/features/auth/reset_password_screen.dart';
 import 'package:evently_app/features/auth/sign_up_screen.dart';
-import 'package:evently_app/features/home/home_screen.dart';
+import 'package:evently_app/features/layout/home_layout.dart';
 import 'package:evently_app/features/onboarding/onboarding_screen.dart';
 import 'package:evently_app/features/onboarding/start_screen.dart';
 import 'package:evently_app/providers/auth_provider.dart';
+import 'package:evently_app/providers/home_provider.dart';
 import 'package:evently_app/providers/onboarding_provider.dart';
 import 'package:evently_app/providers/settings_provider.dart';
 import 'package:flutter/material.dart';
@@ -21,26 +22,24 @@ class EventlyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SettingsProvider()),
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => OnboardingProvider()),
-
+        ChangeNotifierProvider(create: (context) => HomeProvider()),
       ],
       child: Consumer<SettingsProvider>(
         builder: (context, provider, child) {
           return MaterialApp(
-
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightMode,
             darkTheme: AppTheme.darkMode,
             themeMode: provider.currentTheme,
             routes: {
-              StartScreen.routeName : (_) => StartScreen(),
-              OnboardingScreen.routeName :(_) => OnboardingScreen(),
-              LogInScreen.routeName:(_)=>LogInScreen(),
-              SignUpScreen.routeName:(_)=> SignUpScreen(),
-              ResetPasswordScreen.routeName:(_)=>ResetPasswordScreen(),
-              HomeScreen.routeName:(_)=>HomeScreen(),
-
+              StartScreen.routeName: (_) => StartScreen(),
+              OnboardingScreen.routeName: (_) => OnboardingScreen(),
+              LogInScreen.routeName: (_) => LogInScreen(),
+              SignUpScreen.routeName: (_) => SignUpScreen(),
+              ResetPasswordScreen.routeName: (_) => ResetPasswordScreen(),
+              HomeLayout.routeName: (_) => HomeLayout(),
             },
-           initialRoute: HomeScreen.routeName,
+            initialRoute: StartScreen.routeName,
           );
         },
       ),

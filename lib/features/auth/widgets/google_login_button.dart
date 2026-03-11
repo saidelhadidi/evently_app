@@ -1,4 +1,5 @@
 import 'package:evently_app/core/resources/strings_manager.dart';
+import 'package:evently_app/features/layout/home_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,7 +14,9 @@ class GoogleLoginButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, HomeLayout.routeName);
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
           elevation: 0,

@@ -24,4 +24,13 @@ abstract final class StringsManager {
   static const home= "Home";
   static const favourite="Favorite";
   static const profile="Profile";
+  static const welcomeBack="Welcome Back ✨";
+
+//Categories
+  static const all="All";
+  static const meeting="Meeting";
+  static const bookClub="Book Club";
+  static const birthday="Birthday";
+  static const sport="Sport";
+  static const exhibition="Exhibition";
 }

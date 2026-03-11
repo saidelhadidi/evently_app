@@ -11,6 +11,7 @@ class AppTheme {
 
     colorScheme: const ColorScheme.light(
       primary: AppColors.lightMain,
+      onPrimary: Colors.white,
       onPrimaryContainer: AppColors.lightMain,
       outline: AppColors.lightStroke,
       onSurface: AppColors.lightMainText,
@@ -80,6 +81,7 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.darkBackground,
 
     colorScheme: const ColorScheme.dark(
+      onPrimary: Colors.white,
       outline: AppColors.darkStroke,
       primary: AppColors.darkMain,
       onPrimaryContainer: Colors.white,
