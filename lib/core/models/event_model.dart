@@ -6,7 +6,6 @@ class EventModel {
   final String description;
   final CategoryModel category;
   final DateTime dateTime;
-  final String location;
   bool isFavorite;
 
   EventModel({
@@ -15,7 +14,6 @@ class EventModel {
     required this.description,
     required this.category,
     required this.dateTime,
-    required this.location,
     this.isFavorite = false,
   });
 }

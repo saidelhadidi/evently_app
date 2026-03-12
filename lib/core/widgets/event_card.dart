@@ -17,7 +17,6 @@ class EventCard extends StatelessWidget {
     final imagePath = isDark
         ? event.category.darkImage
         : event.category.lightImage;
-
     return Container(
       height: SizeManager.getScreenHeight(context) * 0.25,
       decoration: BoxDecoration(
@@ -45,7 +44,7 @@ class EventCard extends StatelessWidget {
                 mainAxisSize: .min,
                 children: [
                   Text(
-                    event.dateTime.day.toString(),
+                    "${event.dateTime.day}",
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: Theme.of(context).primaryColor,
                     ),

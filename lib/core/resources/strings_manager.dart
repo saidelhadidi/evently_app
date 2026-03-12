@@ -25,7 +25,15 @@ abstract final class StringsManager {
   static const favourite="Favorite";
   static const profile="Profile";
   static const welcomeBack="Welcome Back ✨";
-
+  static const addEvent="Add Event";
+  static const title="Title";
+  static const eventTitleHint="Event Title";
+  static const description="Description";
+  static const eventDescriptionHint="Event Description....";
+  static const eventDate="Event Date";
+  static const chooseDate="Choose Date";
+  static const eventTime="Event Time";
+  static const chooseTime="Choose Time";
 //Categories
   static const all="All";
   static const meeting="Meeting";

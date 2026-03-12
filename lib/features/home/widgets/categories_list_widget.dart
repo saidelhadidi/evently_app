@@ -1,5 +1,4 @@
 import 'package:evently_app/core/constants/categories_list.dart';
-import 'package:evently_app/core/resources/size_manager.dart';
 import 'package:evently_app/features/home/widgets/category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
