@@ -9,10 +9,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../../core/resources/assets_manager.dart';
 
-class HomeLayout extends StatelessWidget {
-  static const String routeName = "home";
+class MainLayout extends StatelessWidget {
+  static const String routeName = "main";
 
-  const HomeLayout({super.key});
+  const MainLayout({super.key});
 
   static List<Widget> tabs = [HomeTab(), FavouriteTab(), ProfileTab()];
 

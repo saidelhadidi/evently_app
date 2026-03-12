@@ -51,7 +51,7 @@ class AddEventButton extends StatelessWidget {
           );
 
           eventProvider.addEvent(newEvent);
-          eventProvider.clearData();
+          eventProvider.resetValues();
           Navigator.pop(context);
         },
       ),

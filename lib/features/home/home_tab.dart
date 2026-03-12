@@ -20,17 +20,24 @@ class HomeTab extends StatelessWidget {
           Expanded(
             child: Consumer2<HomeProvider, EventProvider>(
               builder: (context, homeProvider, eventProvider, child) {
-
-                final filteredEvents = eventProvider.getFilteredEvents(homeProvider.currentCategoryId);
+                final filteredEvents = eventProvider.getFilteredEvents(
+                  homeProvider.currentCategoryId,
+                );
 
                 if (filteredEvents.isEmpty) {
-                  return const Center(child: Text("No events found in this category"));
+                  return const Center(
+                    child: Text("No events found !"),
+                  );
                 }
 
                 return ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   itemCount: filteredEvents.length,
-                  separatorBuilder: (context, index) => const SizedBox(height: 16),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 16),
                   itemBuilder: (context, index) {
                     return EventCard(event: filteredEvents[index]);
                   },

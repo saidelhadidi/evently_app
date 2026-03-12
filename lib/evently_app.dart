@@ -3,7 +3,9 @@ import 'package:evently_app/features/auth/log_in_screen.dart';
 import 'package:evently_app/features/auth/reset_password_screen.dart';
 import 'package:evently_app/features/auth/sign_up_screen.dart';
 import 'package:evently_app/features/events/add_event.dart';
-import 'package:evently_app/features/layout/home_layout.dart';
+import 'package:evently_app/features/events/edit_event.dart';
+import 'package:evently_app/features/events/event_details.dart';
+import 'package:evently_app/features/layout/main_layout.dart';
 import 'package:evently_app/features/onboarding/onboarding_screen.dart';
 import 'package:evently_app/features/onboarding/start_screen.dart';
 import 'package:evently_app/providers/auth_provider.dart';
@@ -26,7 +28,6 @@ class EventlyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => OnboardingProvider()),
         ChangeNotifierProvider(create: (context) => HomeProvider()),
         ChangeNotifierProvider(create: (context) => EventProvider()),
-
       ],
       child: Consumer<SettingsProvider>(
         builder: (context, provider, child) {
@@ -41,8 +42,10 @@ class EventlyApp extends StatelessWidget {
               LogInScreen.routeName: (_) => LogInScreen(),
               SignUpScreen.routeName: (_) => SignUpScreen(),
               ResetPasswordScreen.routeName: (_) => ResetPasswordScreen(),
-              HomeLayout.routeName: (_) => HomeLayout(),
-              AddEvent.routeName:(_)=>AddEvent(),
+              MainLayout.routeName: (_) => MainLayout(),
+              AddEvent.routeName: (_) => AddEvent(),
+              EventDetails.routeName: (_) => EventDetails(),
+              EditEvent.routeName: (_) => EditEvent(),
             },
             initialRoute: StartScreen.routeName,
           );

@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
-
 import '../core/constants/categories_list.dart';
 import '../core/models/event_model.dart';
 
 class EventProvider extends ChangeNotifier {
-  String selectedCategoryId = "sport";
+  String selectedCategoryId = CategoriesList.categories[1].id;
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
+  bool isFavourite = false;
+
   List<EventModel> allEvents = [];
 
+  void toggleFavorite(String eventId) {
+    int index = allEvents.indexWhere((event) => event.id == eventId);
+    if (index != -1) {
+      allEvents[index].isFavorite = !allEvents[index].isFavorite;
+      notifyListeners();
+    }
+  }
+  List<EventModel> get favEvents {
+    return allEvents.where((event) => event.isFavorite).toList();
+  }
   void selectEventType(String id) {
     selectedCategoryId = id;
     notifyListeners();
@@ -26,16 +37,22 @@ class EventProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearData() {
-    titleController.clear();
-    descriptionController.clear();
+  void resetValues() {
+    selectedCategoryId = CategoriesList.categories[1].id;
     selectedDate = null;
     selectedTime = null;
+    titleController.clear();
+    descriptionController.clear();
     notifyListeners();
   }
 
   void addEvent(EventModel event) {
     allEvents.add(event);
+    notifyListeners();
+  }
+
+  void deleteEvent(String eventId) {
+    allEvents.removeWhere((event) => event.id == eventId);
     notifyListeners();
   }
 
@@ -47,13 +64,41 @@ class EventProvider extends ChangeNotifier {
     }
   }
 
-  void resetValues() {
-    selectedCategoryId = CategoriesList.categories[1].id;
-    selectedDate = null;
-    selectedTime = null;
-    titleController.clear();
-    descriptionController.clear();
+  void loadEventData(EventModel event) {
+    titleController.text = event.title;
+    descriptionController.text = event.description;
+    selectedDate = event.dateTime;
+    selectedTime = TimeOfDay.fromDateTime(event.dateTime);
+    selectedCategoryId = event.category.id;
     notifyListeners();
+  }
+
+  void updateEvent(String eventId) {
+    int index = allEvents.indexWhere((event) => event.id == eventId);
+    if (index != -1 && selectedDate != null && selectedTime != null) {
+      DateTime finalDateTime = DateTime(
+        selectedDate!.year,
+        selectedDate!.month,
+        selectedDate!.day,
+        selectedTime!.hour,
+        selectedTime!.minute,
+      );
+      var selectedCategory = CategoriesList.categories.firstWhere(
+        (cat) => cat.id == selectedCategoryId,
+        orElse: () => CategoriesList.categories[1],
+      );
+      bool oldIsFavorite = allEvents[index].isFavorite;
+      EventModel updatedEvent = EventModel(
+        id: eventId,
+        title: titleController.text,
+        description: descriptionController.text,
+        category: selectedCategory,
+        dateTime: finalDateTime,
+        isFavorite: oldIsFavorite,
+      );
+      allEvents[index] = updatedEvent;
+      resetValues();
+    }
   }
 
   @override

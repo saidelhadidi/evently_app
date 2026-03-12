@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import '../../core/constants/categories_list.dart';
 import '../../core/widgets/custom_back_button.dart';
 import '../../providers/event_provider.dart';
-import '../../providers/settings_provider.dart';
 
 class AddEvent extends StatelessWidget {
   const AddEvent({super.key});
@@ -19,8 +18,6 @@ class AddEvent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settingsProvider = Provider.of<SettingsProvider>(context);
-    final isDark = settingsProvider.currentTheme == ThemeMode.dark;
     return PopScope(
       onPopInvokedWithResult: (didPop, result) {
         if (didPop) {
@@ -29,7 +26,7 @@ class AddEvent extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          leadingWidth: 66,
+          leadingWidth: 60,
           leading: const CustomBackButton(),
           title: Text(StringsManager.addEvent),
         ),
@@ -44,10 +41,7 @@ class AddEvent extends StatelessWidget {
                     orElse: () => CategoriesList.categories[1],
                   );
 
-                  final headerImagePath = isDark
-                      ? selectedCategory.darkImage
-                      : selectedCategory.lightImage;
-                  return HeaderPicture(image: headerImagePath);
+                  return HeaderPicture(category: selectedCategory);
                 },
               ),
               SelectCategoryList(),

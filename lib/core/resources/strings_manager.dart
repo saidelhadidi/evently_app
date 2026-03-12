@@ -34,6 +34,11 @@ abstract final class StringsManager {
   static const chooseDate="Choose Date";
   static const eventTime="Event Time";
   static const chooseTime="Choose Time";
+  static const eventDetails="Event details";
+  static const editEvent="Edit event";
+  static const updateEvent="Update event";
+  static const searchBarHint="Search for event";
+
 //Categories
   static const all="All";
   static const meeting="Meeting";

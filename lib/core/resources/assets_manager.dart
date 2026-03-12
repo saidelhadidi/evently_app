@@ -20,6 +20,10 @@ abstract final class AssetsManager {
   static const profile = "assets/icons/navigationBar/profile.svg";
   static const selectedProfile =
       "assets/icons/navigationBar/selectedProfile.svg";
+  static const deleteIcon="assets/icons/eventActions/delete.svg";
+  static const editIcon="assets/icons/eventActions/edit.svg";
+  static const searchIcon="assets/icons/textFormField/search.svg";
+
 
   // Categories Icons
   static const allCategoriesIcon = "assets/icons/categories/all.svg";
