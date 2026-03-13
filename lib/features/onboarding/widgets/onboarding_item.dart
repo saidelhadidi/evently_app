@@ -12,6 +12,7 @@ class OnBoardingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 16,
       mainAxisAlignment: .start,
       crossAxisAlignment: .start,
       children: [
@@ -25,6 +26,7 @@ class OnBoardingItem extends StatelessWidget {
             BlendMode.srcIn,
           ),
         ),
+         SizedBox(height: SizeManager.getScreenHeight(context) * 0.02),
         Text(
           model.title,
           style: Theme.of(context).textTheme.titleLarge,

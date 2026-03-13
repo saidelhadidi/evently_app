@@ -25,9 +25,7 @@ class HomeTab extends StatelessWidget {
                 );
 
                 if (filteredEvents.isEmpty) {
-                  return const Center(
-                    child: Text("No events found !"),
-                  );
+                  return const Center(child: Text("No events found !"));
                 }
 
                 return ListView.separated(

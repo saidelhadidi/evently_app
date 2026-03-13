@@ -7,6 +7,8 @@ import 'package:evently_app/features/onboarding/widgets/onboarding_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../core/resources/size_manager.dart';
+import '../../core/theme/app_colors.dart';
 import '../../core/widgets/custom_back_button.dart';
 import '../../providers/onboarding_provider.dart';
 
@@ -17,100 +19,144 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<OnboardingProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const HeaderImage(),
         centerTitle: true,
         leadingWidth: 66,
-        leading: provider.currentIndex > 0
-            ? CustomBackButton(
-                onTap: () {
-                  provider.pageController.previousPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              )
-            : null,
+        leading: Consumer<OnboardingProvider>(
+          builder: (context, provider, child) {
+            return provider.currentIndex > 0
+                ? CustomBackButton(
+                    onTap: () {
+                      provider.pageController.previousPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                  )
+                : const SizedBox();
+          },
+        ),
         actions: [
-          if (provider.currentIndex < 2)
-            Padding(
-              padding: const EdgeInsets.only(
-                right: 16.0,
-                top: 8.0,
-                bottom: 8.0,
-              ),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(8),
-                onTap: () {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    LogInScreen.routeName,
-                  );
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
+          Consumer<OnboardingProvider>(
+            builder: (context, provider, child) {
+              if (provider.currentIndex < 2) {
+                final isDark = Theme.of(context).brightness == Brightness.dark;
+
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    right: 16.0,
+                    top: 8.0,
+                    bottom: 8.0,
+                  ),
+                  child: InkWell(
                     borderRadius: BorderRadius.circular(8),
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        LogInScreen.routeName,
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: isDark
+                            ? Colors.transparent
+                            : AppColors.lightInputs,
+                        borderRadius: BorderRadius.circular(8),
+                        border: isDark
+                            ? Border.all(
+                                color: Theme.of(context).primaryColor,
+                                width: 1,
+                              )
+                            : null,
+                      ),
+                      child: Text(
+                        StringsManager.skip,
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
+                              color: isDark
+                                  ? Colors.white
+                                  : Theme.of(context).primaryColor,
+                            ),
+                      ),
+                    ),
                   ),
-                  child: Text(
-                    StringsManager.skip,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                ),
-              ),
-            ),
+                );
+              }
+              return const SizedBox();
+            },
+          ),
         ],
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Stack(
-            alignment: .topStart,
+          child: Column(
             children: [
-              PageView.builder(
-                itemBuilder: (context, index) {
-                  return OnBoardingItem(
-                    model: OnBoardingData.onBoardingScreens[index],
+              Expanded(
+                child: Stack(
+                  children: [
+                    PageView.builder(
+                      itemCount: OnBoardingData.onBoardingScreens.length,
+                      controller: context
+                          .read<OnboardingProvider>()
+                          .pageController,
+                      onPageChanged: (index) {
+                        context.read<OnboardingProvider>().changeIndex(index);
+                      },
+                      itemBuilder: (context, index) {
+                        return OnBoardingItem(
+                          model: OnBoardingData.onBoardingScreens[index],
+                        );
+                      },
+                    ),
+                    Positioned(
+                      top: SizeManager.getScreenHeight(context) * 0.47,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: Consumer<OnboardingProvider>(
+                          builder: (context, provider, child) {
+                            return SmoothPageIndicator(
+                              controller: provider.pageController,
+                              count: OnBoardingData.onBoardingScreens.length,
+                              effect: WormEffect(
+                                activeDotColor: Theme.of(context).primaryColor,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 16),
+              Consumer<OnboardingProvider>(
+                builder: (context, provider, child) {
+                  return CustomPrimaryButton(
+                    title: provider.currentIndex == 2
+                        ? StringsManager.getStarted
+                        : StringsManager.next,
+                    onPressed: () {
+                      if (provider.currentIndex <
+                          OnBoardingData.onBoardingScreens.length - 1) {
+                        provider.pageController.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      } else {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          LogInScreen.routeName,
+                        );
+                      }
+                    },
                   );
                 },
-                itemCount: OnBoardingData.onBoardingScreens.length,
-                onPageChanged: (index) {
-                  provider.changeIndex(index);
-                },
-                controller: provider.pageController,
-              ),
-              Align(
-                alignment: .center,
-                child: SmoothPageIndicator(
-                  controller: provider.pageController,
-                  count: OnBoardingData.onBoardingScreens.length,
-                  effect: WormEffect(
-                    activeDotColor: Theme.of(context).primaryColor,
-                  ),
-                ),
-              ),
-              Align(
-                alignment: .bottomCenter,
-                child: CustomPrimaryButton(
-                  title: provider.currentIndex == 2 ? "Let's Start" : "Next",
-                  onPressed: () {
-                    provider.currentIndex <
-                            OnBoardingData.onBoardingScreens.length - 1
-                        ? provider.pageController.nextPage(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,
-                          )
-                        : {
-                            Navigator.pushReplacementNamed(
-                              context,
-                              LogInScreen.routeName,
-                            ),
-                          };
-                  },
-                ),
               ),
             ],
           ),

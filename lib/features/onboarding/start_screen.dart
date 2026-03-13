@@ -1,6 +1,7 @@
 import 'package:evently_app/core/resources/assets_manager.dart';
 import 'package:evently_app/core/resources/size_manager.dart';
 import 'package:evently_app/core/resources/strings_manager.dart';
+import 'package:evently_app/core/theme/app_colors.dart';
 import 'package:evently_app/core/widgets/custom_primary_button.dart';
 import 'package:evently_app/core/widgets/header_image.dart';
 import 'package:evently_app/core/widgets/toggle_switch.dart';
@@ -19,9 +20,9 @@ class StartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: HeaderImage()),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: SafeArea(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
               SvgPicture.asset(
@@ -34,21 +35,29 @@ class StartScreen extends StatelessWidget {
                 ),
                 fit: BoxFit.cover,
               ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: .start,
-                children: [
-                  Text(
-                    StringsManager.startScreenTitle,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    StringsManager.startScreenSubTitle,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  Expanded(
-                    child: Consumer<SettingsProvider>(
+              const SizedBox(height: 24),
+              Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: .start,
+                          children: [
+                            Text(
+                              StringsManager.startScreenTitle,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              StringsManager.startScreenSubTitle,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Consumer<SettingsProvider>(
                       builder: (context, manager, child) {
                         return Column(
                           mainAxisAlignment: .end,
@@ -59,15 +68,45 @@ class StartScreen extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     StringsManager.language,
-                                    style: Theme.of(context).textTheme.titleMedium
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
                                         ?.copyWith(
-                                          color: Theme.of(context).primaryColor,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onPrimaryContainer,
                                         ),
                                   ),
                                 ),
                                 ToggleSwitch(
-                                  choice1: Text(StringsManager.english),
-                                  choice2: Text(StringsManager.arabic),
+                                  choice1: Text(
+                                    StringsManager.english,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                          color:
+                                              (manager.currentTheme ==
+                                                      ThemeMode.light &&
+                                                  !manager.isEnglish)
+                                              ? AppColors.lightMain
+                                              : null,
+                                        ),
+                                  ),
+                                  choice2: Text(
+                                    StringsManager.arabic,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                          color:
+                                              (manager.currentTheme ==
+                                                      ThemeMode.light &&
+                                                  manager.isEnglish)
+                                              ? AppColors.lightMain
+                                              : null,
+                                        ),
+                                  ),
                                   isChoice1Selected: manager.isEnglish,
                                   onChanged: (bool p1) {
                                     manager.changeLanguage(p1);
@@ -80,17 +119,37 @@ class StartScreen extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     StringsManager.theme,
-                                    style: Theme.of(context).textTheme.titleMedium
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
                                         ?.copyWith(
-                                          color: Theme.of(context).primaryColor,
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onPrimaryContainer,
                                         ),
                                   ),
                                 ),
                                 ToggleSwitch(
                                   choice1: SvgPicture.asset(
                                     AssetsManager.lightMode,
+                                    colorFilter: ColorFilter.mode(
+                                      Theme.of(context).colorScheme.onPrimary,
+                                      BlendMode.srcIn,
+                                    ),
                                   ),
-                                  choice2: SvgPicture.asset(AssetsManager.darkMode),
+                                  choice2: SvgPicture.asset(
+                                    AssetsManager.darkMode,
+                                    colorFilter: ColorFilter.mode(
+                                      manager.currentTheme == ThemeMode.light
+                                          ? Theme.of(
+                                              context,
+                                            ).colorScheme.primary
+                                          : Theme.of(
+                                              context,
+                                            ).colorScheme.onPrimary,
+                                      BlendMode.srcIn,
+                                    ),
+                                  ),
                                   isChoice1Selected:
                                       manager.currentTheme == ThemeMode.light,
                                   onChanged: (bool isLightSelected) {
@@ -104,7 +163,7 @@ class StartScreen extends StatelessWidget {
                               ],
                             ),
                             CustomPrimaryButton(
-                              title: "Let's start",
+                              title: StringsManager.letsStart,
                               onPressed: () {
                                 Navigator.pushReplacementNamed(
                                   context,
@@ -116,14 +175,13 @@ class StartScreen extends StatelessWidget {
                         );
                       },
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ]
-        )
-      )
-    )
-      );
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -4,6 +4,7 @@ import 'app_colors.dart';
 class AppTheme {
   // ===================== Light Theme =====================
   static final ThemeData lightMode = ThemeData(
+    splashFactory: NoSplash.splashFactory,
     fontFamily: 'Poppins',
     useMaterial3: true,
     primaryColor: AppColors.lightMain,
@@ -17,7 +18,7 @@ class AppTheme {
       onSurface: AppColors.lightMainText,
       error: AppColors.lightRed,
     ),
-
+    dividerTheme: DividerThemeData(thickness: 1, color: AppColors.lightStroke),
     // text
     textTheme: const TextTheme(
       titleLarge: TextStyle(
@@ -35,6 +36,11 @@ class AppTheme {
         fontSize: 16,
         color: AppColors.lightSecText,
         height: 1.5,
+      ),
+      labelMedium: TextStyle(
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+        fontSize: 14,
       ),
     ),
 
@@ -75,6 +81,7 @@ class AppTheme {
 
   // ===================== Dark Theme =====================
   static final ThemeData darkMode = ThemeData(
+    splashFactory: NoSplash.splashFactory,
     fontFamily: 'Poppins',
     useMaterial3: true,
     primaryColor: AppColors.darkMain,
@@ -88,7 +95,7 @@ class AppTheme {
       onSurface: AppColors.darkMainText,
       error: AppColors.darkRed,
     ),
-
+    dividerTheme: DividerThemeData(thickness: 1, color: AppColors.darkStroke),
     //text
     textTheme: const TextTheme(
       titleLarge: TextStyle(
@@ -102,7 +109,16 @@ class AppTheme {
         color: AppColors.darkMainText,
       ),
       bodyLarge: TextStyle(fontSize: 16, color: AppColors.darkMainText),
-      bodyMedium: TextStyle(fontSize: 16, color: AppColors.darkSecText),
+      bodyMedium: TextStyle(
+        fontSize: 16,
+        color: AppColors.darkSecText,
+        height: 1.5,
+      ),
+      labelMedium: TextStyle(
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+        fontSize: 14,
+      ),
     ),
 
     // AppBar

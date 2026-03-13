@@ -1,0 +1,53 @@
+import 'package:evently_app/core/resources/assets_manager.dart';
+import 'package:evently_app/features/onboarding/start_screen.dart';
+import 'package:flutter/material.dart';
+
+class SplashScreen extends StatefulWidget {
+  static const String routeName = "splash_screen";
+
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  bool _isAnimate = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _startAnimation();
+  }
+
+  void _startAnimation() {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (mounted) {
+        setState(() {
+          _isAnimate = true;
+        });
+      }
+    });
+
+    Future.delayed(const Duration(milliseconds: 2000), () {
+      if (mounted) {
+        Navigator.pushReplacementNamed(context, StartScreen.routeName);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: Center(
+        child: AnimatedScale(
+          duration: const Duration(milliseconds: 1500),
+          curve: Curves.easeOutQuart,
+          scale: _isAnimate ? 1.5 : 1.0,
+          child: Image.asset(AssetsManager.splashScreen, width: 250),
+        ),
+      ),
+    );
+  }
+}

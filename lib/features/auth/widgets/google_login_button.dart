@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../core/resources/assets_manager.dart';
-import '../../../core/theme/app_colors.dart';
 
 class GoogleLoginButton extends StatelessWidget {
   const GoogleLoginButton({super.key});
@@ -18,12 +17,13 @@ class GoogleLoginButton extends StatelessWidget {
           Navigator.pushNamed(context, MainLayout.routeName);
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
           elevation: 0,
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
-            side: const BorderSide(color: AppColors.lightStroke),
+            side: BorderSide(color: Theme.of(context).colorScheme.outline),
+
           ),
         ),
         child: Row(

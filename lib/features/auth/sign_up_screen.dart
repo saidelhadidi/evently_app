@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../core/resources/assets_manager.dart';
 import '../../core/resources/strings_manager.dart';
-import '../../core/theme/app_colors.dart';
 import '../../core/widgets/custom_primary_button.dart';
 import '../../core/widgets/custom_text_field.dart';
 import '../../core/widgets/header_image.dart';
@@ -29,9 +28,7 @@ class SignUpScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Text(
                   StringsManager.signUpPageTitle,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               CustomTextField(
@@ -99,9 +96,7 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(height: 24),
               Row(
                 children: [
-                  const Expanded(
-                    child: Divider(thickness: 2, color: AppColors.lightStroke),
-                  ),
+                  const Expanded(child: Divider()),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
@@ -111,9 +106,7 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Expanded(
-                    child: Divider(thickness: 2, color: AppColors.lightStroke),
-                  ),
+                  const Expanded(child: Divider()),
                 ],
               ),
               const SizedBox(height: 24),

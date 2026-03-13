@@ -8,6 +8,8 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, top: 8.0, bottom: 8.0),
       child: InkWell(
@@ -16,13 +18,16 @@ class CustomBackButton extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppColors.lightInputs,
+            color: isDark ? Colors.transparent : AppColors.lightInputs,
             borderRadius: BorderRadius.circular(8),
+            border: isDark
+                ? Border.all(color: Theme.of(context).primaryColor, width: 1)
+                : null,
           ),
           child: Icon(
             Icons.arrow_back_ios_new,
             size: 20,
-            color: Theme.of(context).primaryColor,
+            color: isDark ? Colors.white : Theme.of(context).primaryColor,
           ),
         ),
       ),

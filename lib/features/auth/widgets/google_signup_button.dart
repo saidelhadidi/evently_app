@@ -1,9 +1,7 @@
 import 'package:evently_app/core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../core/resources/assets_manager.dart';
-import '../../../core/theme/app_colors.dart';
 
 class GoogleSignupButton extends StatelessWidget {
   const GoogleSignupButton({super.key});
@@ -15,12 +13,12 @@ class GoogleSignupButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).inputDecorationTheme.fillColor,
           elevation: 0,
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
-            side: const BorderSide(color: AppColors.lightStroke),
+            side: BorderSide(color: Theme.of(context).colorScheme.outline),
           ),
         ),
         child: Row(

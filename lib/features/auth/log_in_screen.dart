@@ -4,10 +4,11 @@ import 'package:evently_app/core/widgets/custom_text_field.dart';
 import 'package:evently_app/features/auth/reset_password_screen.dart';
 import 'package:evently_app/features/auth/sign_up_screen.dart';
 import 'package:evently_app/features/auth/widgets/google_login_button.dart';
+import 'package:evently_app/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import '../../core/resources/strings_manager.dart';
-import '../../core/theme/app_colors.dart';
 import '../../core/widgets/header_image.dart';
 
 class LogInScreen extends StatelessWidget {
@@ -18,7 +19,7 @@ class LogInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const HeaderImage()),
+      appBar: AppBar(title: const HeaderImage(), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -29,9 +30,7 @@ class LogInScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Text(
                   StringsManager.logInPageTitle,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Theme.of(context).primaryColor,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
               CustomTextField(
@@ -39,14 +38,20 @@ class LogInScreen extends StatelessWidget {
                 prefixIcon: SvgPicture.asset(AssetsManager.mailIcon),
               ),
               const SizedBox(height: 16),
-              CustomTextField(
-                hintText: StringsManager.passwordHintText,
-                prefixIcon: SvgPicture.asset(AssetsManager.passwordIcon),
-                suffixIcon: IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(AssetsManager.eyeIcon),
-                ),
-                isObscure: true,
+              Consumer<AuthProvider>(
+                builder: (context, provider, child) {
+                  return CustomTextField(
+                    hintText: StringsManager.passwordHintText,
+                    prefixIcon: SvgPicture.asset(AssetsManager.passwordIcon),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        provider.togglePasswordVisibility();
+                      },
+                      icon: SvgPicture.asset(AssetsManager.eyeIcon),
+                    ),
+                    isObscure: provider.isPasswordObscured,
+                  );
+                },
               ),
               const SizedBox(height: 16),
               Align(
@@ -71,7 +76,7 @@ class LogInScreen extends StatelessWidget {
                 title: StringsManager.logIn,
                 onPressed: () {},
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 24),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -81,7 +86,10 @@ class LogInScreen extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, SignUpScreen.routeName);
+                      Navigator.pushReplacementNamed(
+                        context,
+                        SignUpScreen.routeName,
+                      );
                     },
                     child: Text(
                       StringsManager.signUp,
@@ -98,9 +106,7 @@ class LogInScreen extends StatelessWidget {
               const SizedBox(height: 24),
               Row(
                 children: [
-                  const Expanded(
-                    child: Divider(thickness: 2, color: AppColors.lightStroke),
-                  ),
+                  Expanded(child: Divider()),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
@@ -110,9 +116,7 @@ class LogInScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Expanded(
-                    child: Divider(thickness: 2, color: AppColors.lightStroke),
-                  ),
+                  Expanded(child: Divider()),
                 ],
               ),
               const SizedBox(height: 24),

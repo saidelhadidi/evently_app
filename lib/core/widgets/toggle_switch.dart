@@ -1,4 +1,3 @@
-import 'package:evently_app/core/resources/size_manager.dart';
 import 'package:flutter/material.dart';
 
 class ToggleSwitch extends StatelessWidget {
@@ -19,53 +18,50 @@ class ToggleSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     Color activeColor = primaryColor;
-    final inactiveColor = Theme.of(context).inputDecorationTheme.fillColor ;
+    final inactiveColor = Theme.of(context).inputDecorationTheme.fillColor;
     final strokeColor = Theme.of(context).colorScheme.outline;
-    return SizedBox(
-      height: SizeManager.getScreenHeight(context) * 0.04,
-      child: Row(
-        mainAxisAlignment: .end,
-        spacing: 10,
-        children: [
-          InkWell(
-            borderRadius: .circular(8),
-            onTap: () {
-              onChanged(true);
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+    return Row(
+      mainAxisAlignment: .end,
+      spacing: 10,
+      children: [
+        InkWell(
+          borderRadius: .circular(8),
+          onTap: () {
+            onChanged(true);
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
 
-              alignment: .center,
-              decoration: BoxDecoration(
-                border: isChoice1Selected
-                    ? null
-                    : Border.all(color: strokeColor, width: 0.5),
-                borderRadius: .circular(8),
-                color: isChoice1Selected ? activeColor : inactiveColor,
-              ),
-              child: choice1,
+            alignment: .center,
+            decoration: BoxDecoration(
+              border: isChoice1Selected
+                  ? null
+                  : Border.all(color: strokeColor, width: 0.5),
+              borderRadius: .circular(8),
+              color: isChoice1Selected ? activeColor : inactiveColor,
             ),
+            child: choice1,
           ),
-          InkWell(
-            borderRadius: .circular(8),
-            onTap: () {
-              onChanged(false);
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              alignment: .center,
-              decoration: BoxDecoration(
-                border: isChoice1Selected
-                    ? Border.all(color: strokeColor, width: 0.5)
-                    : null,
-                borderRadius: BorderRadius.circular(8),
-                color: isChoice1Selected ? inactiveColor : activeColor,
-              ),
-              child: choice2,
+        ),
+        InkWell(
+          borderRadius: .circular(8),
+          onTap: () {
+            onChanged(false);
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            alignment: .center,
+            decoration: BoxDecoration(
+              border: isChoice1Selected
+                  ? Border.all(color: strokeColor, width: 0.5)
+                  : null,
+              borderRadius: BorderRadius.circular(8),
+              color: isChoice1Selected ? inactiveColor : activeColor,
             ),
+            child: choice2,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
