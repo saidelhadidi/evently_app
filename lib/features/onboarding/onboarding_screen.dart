@@ -78,7 +78,7 @@ class OnboardingScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleMedium
                             ?.copyWith(
                               color: isDark
-                                  ? Colors.white
+                                  ? AppColors.lightInputs
                                   : Theme.of(context).primaryColor,
                             ),
                       ),
