@@ -42,6 +42,8 @@ abstract final class StringsManager {
   static const letsStart = "Let's start";
   static const getStarted = "Get started";
   static const next = "Next";
+  static const darkMode="Dark mode";
+  static const logout="Logout";
 
   //Categories
   static const all = "All";

@@ -38,7 +38,7 @@ class EventlyApp extends StatelessWidget {
             darkTheme: AppTheme.darkMode,
             themeMode: provider.currentTheme,
             routes: {
-              SplashScreen.routeName:(_)=> SplashScreen(),
+              SplashScreen.routeName: (_) => SplashScreen(),
               StartScreen.routeName: (_) => StartScreen(),
               OnboardingScreen.routeName: (_) => OnboardingScreen(),
               LogInScreen.routeName: (_) => LogInScreen(),

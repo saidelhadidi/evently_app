@@ -1,5 +1,5 @@
 abstract final class AssetsManager {
-  static const splashScreen="assets/images/splashScreen.png";
+  static const splashScreen = "assets/images/splashScreen.png";
   static const appBarImage = "assets/images/appBarImage.png";
   static const startImage = "assets/images/startImage.svg";
   static const lightMode = "assets/icons/lightMode.svg";
@@ -21,10 +21,10 @@ abstract final class AssetsManager {
   static const profile = "assets/icons/navigationBar/profile.svg";
   static const selectedProfile =
       "assets/icons/navigationBar/selectedProfile.svg";
-  static const deleteIcon="assets/icons/eventActions/delete.svg";
-  static const editIcon="assets/icons/eventActions/edit.svg";
-  static const searchIcon="assets/icons/textFormField/search.svg";
-
+  static const deleteIcon = "assets/icons/eventActions/delete.svg";
+  static const editIcon = "assets/icons/eventActions/edit.svg";
+  static const searchIcon = "assets/icons/textFormField/search.svg";
+  static const profilePicture = "assets/images/profile.heic";
 
   // Categories Icons
   static const allCategoriesIcon = "assets/icons/categories/all.svg";

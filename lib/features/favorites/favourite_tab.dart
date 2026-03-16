@@ -14,7 +14,7 @@ class FavouriteTab extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-           CustomSearchBar(),
+            CustomSearchBar(),
             const SizedBox(height: 16),
             Consumer<EventProvider>(
               builder: (context, provider, child) {
