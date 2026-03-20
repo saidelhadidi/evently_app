@@ -25,7 +25,7 @@ abstract final class StringsManager {
   static const home = "Home";
   static const favourite = "Favorite";
   static const profile = "Profile";
-  static const welcomeBack = "Welcome Back ✨";
+  static const welcomeBack = "Welcome Back";
   static const addEvent = "Add Event";
   static const title = "Title";
   static const eventTitleHint = "Event Title";

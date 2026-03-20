@@ -9,8 +9,21 @@ class EventProvider extends ChangeNotifier {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
   bool isFavourite = false;
+  String searchQuery="";
 
   List<EventModel> allEvents = [];
+  List<EventModel> searchFavResult = [];
+  void searchFavEvents(String query) {
+    searchQuery=query;
+    if (query.isEmpty) {
+      searchFavResult = favEvents;
+    } else {
+      searchFavResult = favEvents.where((event) {
+        return event.title.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    }
+    notifyListeners();
+  }
 
   void toggleFavorite(String eventId) {
     int index = allEvents.indexWhere((event) => event.id == eventId);
@@ -19,9 +32,11 @@ class EventProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
   List<EventModel> get favEvents {
     return allEvents.where((event) => event.isFavorite).toList();
   }
+
   void selectEventType(String id) {
     selectedCategoryId = id;
     notifyListeners();
