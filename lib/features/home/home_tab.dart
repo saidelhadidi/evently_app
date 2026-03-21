@@ -7,6 +7,8 @@ import '../../providers/event_provider.dart';
 import '../../providers/home_provider.dart';
 
 class HomeTab extends StatelessWidget {
+  static const String routeName = "home_tab";
+
   const HomeTab({super.key});
 
   @override

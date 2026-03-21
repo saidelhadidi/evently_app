@@ -7,6 +7,7 @@ import 'package:evently_app/features/onboarding/widgets/onboarding_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../../core/constants/shared_prefs_helper.dart';
 import '../../core/resources/size_manager.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/custom_back_button.dart';
@@ -56,11 +57,12 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(8),
-                        onTap: () {
+                        onTap: () async {
                           Navigator.pushReplacementNamed(
                             context,
                             LogInScreen.routeName,
                           );
+                          await SharedPrefsHelper.saveOnboardingFinished();
                         },
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -150,7 +152,7 @@ class OnboardingScreen extends StatelessWidget {
                         title: provider.currentIndex == 2
                             ? StringsManager.getStarted
                             : StringsManager.next,
-                        onPressed: () {
+                        onPressed: () async {
                           if (provider.currentIndex <
                               OnBoardingData.onBoardingScreens.length - 1) {
                             provider.pageController.nextPage(
@@ -162,6 +164,7 @@ class OnboardingScreen extends StatelessWidget {
                               context,
                               LogInScreen.routeName,
                             );
+                            await SharedPrefsHelper.saveOnboardingFinished();
                           }
                         },
                       );

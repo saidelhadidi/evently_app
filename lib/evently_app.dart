@@ -5,6 +5,7 @@ import 'package:evently_app/features/auth/sign_up_screen.dart';
 import 'package:evently_app/features/events/add_event.dart';
 import 'package:evently_app/features/events/edit_event.dart';
 import 'package:evently_app/features/events/event_details.dart';
+import 'package:evently_app/features/home/home_tab.dart';
 import 'package:evently_app/features/layout/main_layout.dart';
 import 'package:evently_app/features/onboarding/onboarding_screen.dart';
 import 'package:evently_app/features/onboarding/start_screen.dart';
@@ -42,6 +43,7 @@ class EventlyApp extends StatelessWidget {
               AddEvent.routeName: (_) => AddEvent(),
               EventDetails.routeName: (_) => EventDetails(),
               EditEvent.routeName: (_) => EditEvent(),
+              HomeTab.routeName:(_)=>HomeTab(),
             },
             initialRoute: SplashScreen.routeName,
           );

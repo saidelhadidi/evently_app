@@ -1,6 +1,8 @@
+import 'package:evently_app/core/constants/shared_prefs_helper.dart';
 import 'package:evently_app/core/resources/assets_manager.dart';
 import 'package:evently_app/features/onboarding/start_screen.dart';
 import 'package:flutter/material.dart';
+import '../auth/log_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = "splash_screen";
@@ -29,8 +31,12 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     });
 
-    Future.delayed(const Duration(milliseconds: 2000), () {
-      if (mounted) {
+    Future.delayed(const Duration(milliseconds: 2000), () async {
+      bool isOnboarded = await SharedPrefsHelper.getOnboardingStatus();
+      if (!mounted) return;
+      if (isOnboarded) {
+        Navigator.pushReplacementNamed(context, LogInScreen.routeName);
+      } else {
         Navigator.pushReplacementNamed(context, StartScreen.routeName);
       }
     });

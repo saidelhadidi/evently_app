@@ -16,44 +16,44 @@
 
 ### 2. 🧠 Advanced State & Memory Management
 * **Clean Architecture:** Strictly separated the UI (Presentation) from Business Logic using `StatelessWidget` and `Provider` (`ChangeNotifier`).
-* **Multi-Provider Syncing:** Efficiently combined multiple states using `Consumer2` to create seamless UI updates without rebuilding the entire screen (e.g., filtering the Home event list based on the active category).
-* **Memory Leak Prevention:** Safely managed the lifecycle of `PageController` and `TextEditingController` by disposing of them correctly within the Provider layer.
+* **Provider Scoping & Optimization:** Strategically placed local providers (e.g., `AuthProvider`, `HomeProvider`) specifically within the widget trees that require them—keeping the global `main.dart` clean to ensure optimal Memory Garbage Collection and Separation of Concerns.
+* **Multi-Provider Syncing:** Efficiently combined multiple states using `Consumer2` to create seamless UI updates without rebuilding the entire screen.
 
-### 3. 📅 Dynamic Event Creation & Filtering
+### 3. 💾 Local Data Persistence & Smart Routing
+* **Persistent State:** Implemented `shared_preferences` to save user settings securely on the device's local storage.
+* **Smart Splash Screen (Traffic Router):** Developed a dynamic `SplashScreen` that asynchronously checks the local storage to route the user instantly to the `StartScreen`, `LogInScreen`, or `HomeTab` based on their onboarding and authentication status.
+* **Theme Memory:** Synced the `SettingsProvider` with local storage to automatically fetch and apply the user's preferred theme (Light/Dark) upon app launch, before the UI even renders.
+
+### 4. 📅 Dynamic Event Creation & Filtering
 * **Interactive Pickers:** Integrated native `showDatePicker` and `showTimePicker`, handling asynchronous data collection and merging them into unified `DateTime` models.
 * **Real-time List Filtering:** Developed a dynamic Home screen that instantly filters and updates the `ListView` based on the selected category chip using encapsulated Provider logic.
-* **Smart Data Formatting:** Utilized the `intl` package to professionally extract and format specific date parts (e.g., converting month numbers to short string abbreviations like "Mar") directly within the UI.
 
-### 4. 🌐 Clean Code & Localization Ready
+### 5. 🌐 Clean Code & Localization Ready
 * **Resource Managers:** Extracted all hardcoded texts and assets into `StringsManager` and `AssetsManager` to enforce DRY principles and prepare the app for seamless multi-language support (English/Arabic).
 * **Responsive Layout:** Carefully calculated dimensions using custom `SizeManager` and dynamic paddings to ensure the UI looks flawless and prevents overflow on all screen sizes.
 
 ---
 
-[//]: # (## 📱 Screenshots)
+## 📱 Screenshots
 
-[//]: # ()
-[//]: # ()
-[//]: # (*&#40;Note: Add your actual screenshot paths below once you capture them!&#41;*)
+*(Note: These are initial previews. UI is subject to enhancements as development continues.)*
 
-[//]: # ()
-[//]: # ()
-[//]: # (| Start Screen &#40;Light&#41; | Start Screen &#40;Dark&#41; | Onboarding Screen |)
+| Splash & Routing | Start Screen (Light) | Start Screen (Dark) |
+|:---:|:---:|:---:|
+| <img src="assets/readme/splash.png" width="250"> | <img src="assets/readme/start_light.png" width="250"> | <img src="assets/readme/start_dark.png" width="250"> |
 
-[//]: # (|:---:|:---:|:---:|)
+| Onboarding 1 | Onboarding 2 | Onboarding 3 |
+|:---:|:---:|:---:|
+| <img src="assets/readme/onboarding_1.png" width="250"> | <img src="assets/readme/onboarding_2.png" width="250"> | <img src="assets/readme/onboarding_3.png" width="250"> |
 
-[//]: # (| <img src="assets/readme/start_light.png" width="250"> | <img src="assets/readme/start_dark.png" width="250"> | <img src="assets/readme/onboarding.png" width="250"> |)
-
-[//]: # ()
-[//]: # ()
-[//]: # (---)
+---
 
 ## 🛠️ Tech Stack & Architecture
 
 * **Framework:** [Flutter](https://flutter.dev/)
 * **Language:** Dart
 * **State Management:** [Provider](https://pub.dev/packages/provider)
-* **Key Packages:** `smooth_page_indicator`, `flutter_svg`, `intl`
+* **Key Packages:** `smooth_page_indicator`, `flutter_svg`, `intl`, `shared_preferences`
 * **Architecture:** Feature-first modular approach (`core/`, `features/`, `providers/`) emphasizing **Separation of Concerns**, **DRY**, and **Clean Code** principles.
 
 ---
