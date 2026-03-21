@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../core/constants/categories_list.dart';
 import '../../../core/models/event_model.dart';
 import '../../../core/resources/strings_manager.dart';

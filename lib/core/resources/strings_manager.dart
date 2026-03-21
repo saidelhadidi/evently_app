@@ -1,4 +1,4 @@
-abstract final class StringsManager {
+class StringsManager {
   static const language = "Language";
   static const arabic = "Arabic";
   static const english = "English";

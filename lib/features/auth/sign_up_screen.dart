@@ -2,7 +2,6 @@ import 'package:evently_app/features/auth/log_in_screen.dart';
 import 'package:evently_app/features/auth/widgets/google_signup_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../core/resources/assets_manager.dart';
 import '../../core/resources/strings_manager.dart';
 import '../../core/widgets/custom_primary_button.dart';

@@ -11,39 +11,42 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          HomeHeaderWidget(),
-          CategoriesListWidget(),
-          const SizedBox(height: 16),
-          Expanded(
-            child: Consumer2<HomeProvider, EventProvider>(
-              builder: (context, homeProvider, eventProvider, child) {
-                final filteredEvents = eventProvider.getFilteredEvents(
-                  homeProvider.currentCategoryId,
-                );
+    return ChangeNotifierProvider(
+      create: (_) => HomeProvider(),
+      child: SafeArea(
+        child: Column(
+          children: [
+            HomeHeaderWidget(),
+            CategoriesListWidget(),
+            const SizedBox(height: 16),
+            Expanded(
+              child: Consumer2<HomeProvider, EventProvider>(
+                builder: (context, homeProvider, eventProvider, child) {
+                  final filteredEvents = eventProvider.getFilteredEvents(
+                    homeProvider.currentCategoryId,
+                  );
 
-                if (filteredEvents.isEmpty) {
-                  return const Center(child: Text("No events found !"));
-                }
+                  if (filteredEvents.isEmpty) {
+                    return const Center(child: Text("No events found !"));
+                  }
 
-                return ListView.separated(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  itemCount: filteredEvents.length,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 16),
-                  itemBuilder: (context, index) {
-                    return EventCard(event: filteredEvents[index]);
-                  },
-                );
-              },
+                  return ListView.separated(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    itemCount: filteredEvents.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 16),
+                    itemBuilder: (context, index) {
+                      return EventCard(event: filteredEvents[index]);
+                    },
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

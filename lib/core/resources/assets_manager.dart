@@ -1,4 +1,4 @@
-abstract final class AssetsManager {
+class AssetsManager {
   static const splashScreen = "assets/images/splashScreen.png";
   static const appBarImage = "assets/images/appBarImage.png";
   static const startImage = "assets/images/startImage.svg";

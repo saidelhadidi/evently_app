@@ -9,10 +9,7 @@ import 'package:evently_app/features/layout/main_layout.dart';
 import 'package:evently_app/features/onboarding/onboarding_screen.dart';
 import 'package:evently_app/features/onboarding/start_screen.dart';
 import 'package:evently_app/features/splash/splash_screen.dart';
-import 'package:evently_app/providers/auth_provider.dart';
 import 'package:evently_app/providers/event_provider.dart';
-import 'package:evently_app/providers/home_provider.dart';
-import 'package:evently_app/providers/onboarding_provider.dart';
 import 'package:evently_app/providers/settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,9 +22,6 @@ class EventlyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => SettingsProvider()),
-        ChangeNotifierProvider(create: (context) => AuthProvider()),
-        ChangeNotifierProvider(create: (context) => OnboardingProvider()),
-        ChangeNotifierProvider(create: (context) => HomeProvider()),
         ChangeNotifierProvider(create: (context) => EventProvider()),
       ],
       child: Consumer<SettingsProvider>(
