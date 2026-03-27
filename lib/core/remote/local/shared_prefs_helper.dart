@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPrefsHelper {
   static const String onboardingKey = "isOnboarded";
   static const String themeKey = "isDarkTheme";
+  static const String languageKey = "language";
 
   static Future<void> saveOnboardingFinished() async {
     final prefs = await SharedPreferences.getInstance();
@@ -24,4 +25,13 @@ class SharedPrefsHelper {
     return prefs.getBool(themeKey) ?? false;
   }
 
+  static Future<void> saveLanguage(String langCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(languageKey, langCode);
+  }
+
+  static Future<String> getLanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(languageKey) ?? "en";
+  }
 }

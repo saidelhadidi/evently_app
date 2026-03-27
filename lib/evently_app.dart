@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:evently_app/core/theme/app_theme.dart';
 import 'package:evently_app/features/auth/log_in_screen.dart';
 import 'package:evently_app/features/auth/reset_password_screen.dart';
@@ -28,6 +29,9 @@ class EventlyApp extends StatelessWidget {
       child: Consumer<SettingsProvider>(
         builder: (context, provider, child) {
           return MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightMode,
             darkTheme: AppTheme.darkMode,

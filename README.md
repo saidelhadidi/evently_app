@@ -28,8 +28,9 @@
 * **Interactive Pickers:** Integrated native `showDatePicker` and `showTimePicker`, handling asynchronous data collection and merging them into unified `DateTime` models.
 * **Real-time List Filtering:** Developed a dynamic Home screen that instantly filters and updates the `ListView` based on the selected category chip using encapsulated Provider logic.
 
-### 5. 🌐 Clean Code & Localization Ready
-* **Resource Managers:** Extracted all hardcoded texts and assets into `StringsManager` and `AssetsManager` to enforce DRY principles and prepare the app for seamless multi-language support (English/Arabic).
+### 5. 🌐 Clean Code & Full Localization Support
+* **Multi-language Support:** Fully implemented English and Arabic localization using the `easy_localization` package. The app dynamically adapts its UI layout (LTR/RTL) and text based on the user's selected language.
+* **Resource Managers:** Extracted all hardcoded texts and assets into `StringsManager` and `AssetsManager` to enforce DRY principles and maintain a scalable code base.
 * **Responsive Layout:** Carefully calculated dimensions using custom `SizeManager` and dynamic paddings to ensure the UI looks flawless and prevents overflow on all screen sizes.
 
 ---
@@ -53,7 +54,7 @@
 * **Framework:** [Flutter](https://flutter.dev/)
 * **Language:** Dart
 * **State Management:** [Provider](https://pub.dev/packages/provider)
-* **Key Packages:** `smooth_page_indicator`, `flutter_svg`, `intl`, `shared_preferences`
+* **Key Packages:** `easy_localization`, `smooth_page_indicator`, `flutter_svg`, `intl`, `shared_preferences`
 * **Architecture:** Feature-first modular approach (`core/`, `features/`, `providers/`) emphasizing **Separation of Concerns**, **DRY**, and **Clean Code** principles.
 
 ---

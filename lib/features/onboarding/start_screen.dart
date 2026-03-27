@@ -27,7 +27,7 @@ class StartScreen extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 AssetsManager.startImage,
-                alignment: .topCenter,
+                alignment: Alignment.topCenter,
                 height: SizeManager.getScreenHeight(context) * 0.4,
                 colorFilter: ColorFilter.mode(
                   Theme.of(context).colorScheme.onPrimaryContainer,
@@ -42,7 +42,7 @@ class StartScreen extends StatelessWidget {
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
-                          crossAxisAlignment: .start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               StringsManager.startScreenTitle,
@@ -60,8 +60,7 @@ class StartScreen extends StatelessWidget {
                     Consumer<SettingsProvider>(
                       builder: (context, manager, child) {
                         return Column(
-                          mainAxisAlignment: .end,
-                          spacing: 16,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Row(
                               children: [
@@ -108,12 +107,13 @@ class StartScreen extends StatelessWidget {
                                         ),
                                   ),
                                   isChoice1Selected: manager.isEnglish,
-                                  onChanged: (bool p1) {
-                                    manager.changeLanguage(p1);
+                                  onChanged: (bool isEnglishSelected) {
+                                    manager.changeLanguage(isEnglishSelected, context);
                                   },
                                 ),
                               ],
                             ),
+                            const SizedBox(height: 16),
                             Row(
                               children: [
                                 Expanded(
@@ -162,6 +162,7 @@ class StartScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
+                            const SizedBox(height: 16),
                             CustomPrimaryButton(
                               title: StringsManager.letsStart,
                               onPressed: () {

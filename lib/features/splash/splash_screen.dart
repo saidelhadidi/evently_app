@@ -1,4 +1,4 @@
-import 'package:evently_app/core/constants/shared_prefs_helper.dart';
+import 'package:evently_app/core/remote/local/shared_prefs_helper.dart';
 import 'package:evently_app/core/resources/assets_manager.dart';
 import 'package:evently_app/features/onboarding/start_screen.dart';
 import 'package:flutter/material.dart';

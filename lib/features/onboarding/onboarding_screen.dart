@@ -7,7 +7,7 @@ import 'package:evently_app/features/onboarding/widgets/onboarding_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../core/constants/shared_prefs_helper.dart';
+import '../../core/remote/local/shared_prefs_helper.dart';
 import '../../core/resources/size_manager.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/custom_back_button.dart';

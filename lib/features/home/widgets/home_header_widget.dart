@@ -14,10 +14,10 @@ class HomeHeaderWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Row(
-        mainAxisAlignment: .spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            crossAxisAlignment: .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 StringsManager.welcomeBack,
@@ -51,7 +51,7 @@ class HomeHeaderWidget extends StatelessWidget {
               InkWell(
                 borderRadius: BorderRadius.circular(8),
                 onTap: () {
-                  provider.changeLanguage(!provider.isEnglish);
+                  provider.changeLanguage(!provider.isEnglish, context);
                 },
                 child: Container(
                   width: 45,
