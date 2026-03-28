@@ -8,6 +8,11 @@ class CustomTextField extends StatelessWidget {
   final bool isObscure;
   final int maxLines;
   final int minLines;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final TextInputAction? textInputAction;
+  final void Function(String)? onFieldSubmitted;
+  final FocusNode? focusNode;
 
   const CustomTextField({
     super.key,
@@ -18,6 +23,11 @@ class CustomTextField extends StatelessWidget {
     this.isObscure = false,
     this.maxLines = 1,
     this.minLines = 1,
+    this.validator,
+    this.onChanged,
+    this.textInputAction,
+    this.onFieldSubmitted,
+    this.focusNode,
   });
 
   @override
@@ -27,6 +37,12 @@ class CustomTextField extends StatelessWidget {
       maxLines: maxLines,
       minLines: minLines,
       controller: controller,
+      validator: validator,
+      onChanged: onChanged,
+      focusNode: focusNode,
+      textInputAction: textInputAction,
+      onFieldSubmitted: onFieldSubmitted,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         hintText: hintText,
         prefixIcon: prefixIcon != null

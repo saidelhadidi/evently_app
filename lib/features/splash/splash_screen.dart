@@ -1,6 +1,7 @@
 import 'package:evently_app/core/remote/local/shared_prefs_helper.dart';
 import 'package:evently_app/core/resources/assets_manager.dart';
 import 'package:evently_app/features/onboarding/start_screen.dart';
+import 'package:evently_app/features/layout/main_layout.dart';
 import 'package:flutter/material.dart';
 import '../auth/log_in_screen.dart';
 
@@ -33,11 +34,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Future.delayed(const Duration(milliseconds: 2000), () async {
       bool isOnboarded = await SharedPrefsHelper.getOnboardingStatus();
+      bool isLoggedIn = await SharedPrefsHelper.getLoginStatus();
+
       if (!mounted) return;
-      if (isOnboarded) {
+
+      if (!isOnboarded) {
+        Navigator.pushReplacementNamed(context, StartScreen.routeName);
+      } else if (!isLoggedIn) {
         Navigator.pushReplacementNamed(context, LogInScreen.routeName);
       } else {
-        Navigator.pushReplacementNamed(context, StartScreen.routeName);
+        Navigator.pushReplacementNamed(context, MainLayout.routeName);
       }
     });
   }

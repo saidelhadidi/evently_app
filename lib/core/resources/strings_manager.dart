@@ -61,4 +61,18 @@ class StringsManager {
   static String get onBoardingSubTitle2 => "onBoardingSubTitle2".tr();
   static String get onBoardingTitle3 => "onBoardingTitle3".tr();
   static String get onBoardingSubTitle3 => "onBoardingSubTitle3".tr();
+
+  // Validation & Auth Errors
+  static String get emailRequired => "emailRequired".tr();
+  static String get invalidEmail => "invalidEmail".tr();
+  static String get nameRequired => "nameRequired".tr();
+  static String get passwordRequired => "passwordRequired".tr();
+  static String get passwordTooShort => "passwordTooShort".tr();
+  static String get passwordsDontMatch => "passwordsDontMatch".tr();
+  static String get emailInUse => "emailInUse".tr();
+  static String get weakPassword => "weakPassword".tr();
+  static String get somethingWentWrong => "somethingWentWrong".tr();
+  static String get invalidCredentials => "invalidCredentials".tr();
+  static String get userNotFound => "userNotFound".tr();
+  static String get or => "or".tr();
 }

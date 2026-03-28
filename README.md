@@ -14,24 +14,26 @@
 * **Dynamic SVG Coloring:** Implemented seamless theme transitions for vector graphics using `ColorFilter` and `BlendMode.srcIn` to avoid pixelation and hardcoded colors.
 * **Custom Typography:** Integrated and properly configured the **Poppins** font family globally across the application for a premium feel.
 
-### 2. 🧠 Advanced State & Memory Management
+### 2. 🔐 Secure Authentication & Firebase Integration
+* **Firebase Auth:** Robust signup and login system integrated with **Firebase Authentication**.
+* **Security Best Practices:** Implemented generic error messaging ("Invalid email or password") to prevent email enumeration, following industry standards (like Facebook/Instagram).
+* **Smart Validation:** Real-time, localized form validation using Flutter's `Form` and `TextFormField` widgets, providing instant feedback directly under the fields.
+* **UX Enhancements:** Optimized keyboard interactions with `textInputAction` (Next/Done) and `onFieldSubmitted` for a fast, "native" feel. Used `ExcludeFocus` to ensure smooth focus traversal.
+
+### 3. 🧠 Advanced State & Memory Management
 * **Clean Architecture:** Strictly separated the UI (Presentation) from Business Logic using `StatelessWidget` and `Provider` (`ChangeNotifier`).
-* **Provider Scoping & Optimization:** Strategically placed local providers (e.g., `AuthProvider`, `HomeProvider`) specifically within the widget trees that require them—keeping the global `main.dart` clean to ensure optimal Memory Garbage Collection and Separation of Concerns.
-* **Multi-Provider Syncing:** Efficiently combined multiple states using `Consumer2` to create seamless UI updates without rebuilding the entire screen.
+* **Provider Scoping:** Strategically placed local providers (e.g., `AuthProvider`, `HomeProvider`) specifically within the widget trees that require them to ensure optimal memory management.
+* **Async Gap Protection:** Implemented rigorous `mounted` and `context.mounted` checks across all asynchronous operations to prevent crashes and memory leaks.
 
-### 3. 💾 Local Data Persistence & Smart Routing
-* **Persistent State:** Implemented `shared_preferences` to save user settings securely on the device's local storage.
-* **Smart Splash Screen (Traffic Router):** Developed a dynamic `SplashScreen` that asynchronously checks the local storage to route the user instantly to the `StartScreen`, `LogInScreen`, or `HomeTab` based on their onboarding and authentication status.
-* **Theme Memory:** Synced the `SettingsProvider` with local storage to automatically fetch and apply the user's preferred theme (Light/Dark) upon app launch, before the UI even renders.
+### 4. 💾 Local Data Persistence & User Profile
+* **Persistent Login State:** Integrated `shared_preferences` to keep users logged in across sessions.
+* **User-Specific Profiles:** Implemented a profile picture management system with **Image Picking** and **Cropping** (1:1 aspect ratio). Pictures are persisted locally using the user's email as a unique key.
+* **Smart Traffic Routing:** A dynamic `SplashScreen` checks the device's state to route users instantly to Onboarding, Login, or the Home screen based on their history.
 
-### 4. 📅 Dynamic Event Creation & Filtering
-* **Interactive Pickers:** Integrated native `showDatePicker` and `showTimePicker`, handling asynchronous data collection and merging them into unified `DateTime` models.
-* **Real-time List Filtering:** Developed a dynamic Home screen that instantly filters and updates the `ListView` based on the selected category chip using encapsulated Provider logic.
-
-### 5. 🌐 Clean Code & Full Localization Support
-* **Multi-language Support:** Fully implemented English and Arabic localization using the `easy_localization` package. The app dynamically adapts its UI layout (LTR/RTL) and text based on the user's selected language.
-* **Resource Managers:** Extracted all hardcoded texts and assets into `StringsManager` and `AssetsManager` to enforce DRY principles and maintain a scalable code base.
-* **Responsive Layout:** Carefully calculated dimensions using custom `SizeManager` and dynamic paddings to ensure the UI looks flawless and prevents overflow on all screen sizes.
+### 5. 🌐 Reactive Localization (EN/AR)
+* **Dynamic Content:** Solved translation "lag" by using **getters** for all data-driven lists (Categories, Onboarding), ensuring UI updates instantly when the language toggles.
+* **Full Arabic Support:** Completely localized the app into Arabic, including RTL layout adaptation and all validation/error messages.
+* **StringsManager:** Centralized resource management using `easy_localization` for a clean and scalable code base.
 
 ---
 
@@ -53,27 +55,35 @@
 
 * **Framework:** [Flutter](https://flutter.dev/)
 * **Language:** Dart
+* **Backend:** [Firebase](https://firebase.google.com/) (Authentication)
 * **State Management:** [Provider](https://pub.dev/packages/provider)
-* **Key Packages:** `easy_localization`, `smooth_page_indicator`, `flutter_svg`, `intl`, `shared_preferences`
+* **Key Packages:** `firebase_auth`, `easy_localization`, `image_picker`, `image_cropper`, `shared_preferences`, `smooth_page_indicator`, `flutter_svg`.
 * **Architecture:** Feature-first modular approach (`core/`, `features/`, `providers/`) emphasizing **Separation of Concerns**, **DRY**, and **Clean Code** principles.
 
 ---
 
 ## 🚀 Getting Started
 
-To get a local copy up and running, follow these simple steps:
-
 ### Prerequisites
 * Flutter SDK (Latest stable version)
-* Dart SDK
-* An IDE (VS Code, Android Studio, etc.)
+* Firebase Project Setup
 
 ### Installation
 1. Clone the repo:
    ```sh
-   git clone [https://github.com/saidelhadidi/evently_app.git](https://github.com/saidelhadidi/evently_app.git)
+   git clone https://github.com/saidelhadidi/evently_app.git
+   ```
+2. Install dependencies:
+   ```sh
+   flutter pub get
+   ```
+3. Run the app:
+   ```sh
+   flutter run
+   ```
+
+---
+
 ## 👨‍💻 Author
 
 **Said Elhadidi** *GDGoC Egypt Facilitator & Mobile Developer* [LinkedIn](https://www.linkedin.com/in/saidelhadidi/) | [GitHub](https://github.com/saidelhadidi)
-
----

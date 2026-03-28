@@ -11,7 +11,8 @@ class AssetsManager {
   static const passwordIcon = "assets/icons/textFormField/password.svg";
   static const googleIcon = "assets/icons/textFormField/google.svg";
   static const userIcon = "assets/icons/textFormField/user.svg";
-  static const eyeIcon = "assets/icons/textFormField/eye-slash.svg";
+  static const eyeSlashIcon = "assets/icons/textFormField/eye-slash.svg";
+  static const eyeIcon="assets/icons/textFormField/eye.svg";
   static const resetPassword = "assets/images/reset_password.svg";
   static const home = "assets/icons/navigationBar/home.svg";
   static const selectedHome = "assets/icons/navigationBar/selectedHome.svg";

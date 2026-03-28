@@ -1,17 +1,18 @@
+import 'package:evently_app/core/remote/local/shared_prefs_helper.dart';
 import 'package:evently_app/core/resources/strings_manager.dart';
 import 'package:evently_app/core/widgets/custom_primary_button.dart';
 import 'package:evently_app/core/widgets/header_image.dart';
-import 'package:evently_app/features/auth/log_in_screen.dart';
+import 'package:evently_app/features/auth/sign_up_screen.dart';
 import 'package:evently_app/features/onboarding/models/onboarding_data.dart';
 import 'package:evently_app/features/onboarding/widgets/onboarding_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../core/remote/local/shared_prefs_helper.dart';
 import '../../core/resources/size_manager.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/widgets/custom_back_button.dart';
 import '../../providers/onboarding_provider.dart';
+import '../auth/log_in_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   static const routeName = "onBoarding_screen";
@@ -162,7 +163,7 @@ class OnboardingScreen extends StatelessWidget {
                           } else {
                             Navigator.pushReplacementNamed(
                               context,
-                              LogInScreen.routeName,
+                              SignUpScreen.routeName,
                             );
                             await SharedPrefsHelper.saveOnboardingFinished();
                           }

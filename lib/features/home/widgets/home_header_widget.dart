@@ -1,6 +1,7 @@
 import 'package:evently_app/core/resources/assets_manager.dart';
 import 'package:evently_app/core/resources/strings_manager.dart';
 import 'package:evently_app/providers/settings_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,8 @@ class HomeHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<SettingsProvider>(context);
+    final user = FirebaseAuth.instance.currentUser;
+    
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Row(
@@ -23,11 +26,14 @@ class HomeHeaderWidget extends StatelessWidget {
                 StringsManager.welcomeBack,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
-              Text("User Name", style: Theme.of(context).textTheme.titleLarge),
+              Text(
+                user?.displayName ?? "User",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
             ],
           ),
           Row(
-            crossAxisAlignment: .center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
                 onTap: () {

@@ -46,6 +46,7 @@ class AppTheme {
 
     // AppBar
     appBarTheme: const AppBarTheme(
+      scrolledUnderElevation: 0,
       backgroundColor: AppColors.lightBackground,
       elevation: 0,
       centerTitle: true,
@@ -123,6 +124,7 @@ class AppTheme {
 
     // AppBar
     appBarTheme: const AppBarTheme(
+      scrolledUnderElevation: 0,
       backgroundColor: AppColors.darkBackground,
       elevation: 0,
       centerTitle: true,

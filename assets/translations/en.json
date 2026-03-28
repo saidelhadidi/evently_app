@@ -54,5 +54,17 @@
   "onBoardingTitle2": "Effortless Event Planning",
   "onBoardingSubTitle2": "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.",
   "onBoardingTitle3": "Connect with Friends & Share Moments",
-  "onBoardingSubTitle3": "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories."
+  "onBoardingSubTitle3": "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.",
+  "emailRequired": "Email cannot be empty",
+  "invalidEmail": "Please enter a valid email address",
+  "nameRequired": "Name cannot be empty",
+  "passwordRequired": "Password cannot be empty",
+  "passwordTooShort": "Password must be at least 8 characters long",
+  "passwordsDontMatch": "Passwords do not match",
+  "emailInUse": "The account already exists for that email.",
+  "weakPassword": "The password provided is too weak.",
+  "somethingWentWrong": "Something went wrong, please try again.",
+  "invalidCredentials": "Invalid email or password.",
+  "userNotFound": "This email is not registered.",
+  "or": "Or"
 }
