@@ -20,14 +20,23 @@ class AddEventButton extends StatelessWidget {
             context,
             listen: false,
           );
-          String title = eventProvider.titleController.text;
-          String description = eventProvider.descriptionController.text;
 
-          if (title.isEmpty ||
-              eventProvider.selectedDate == null ||
-              eventProvider.selectedTime == null) {
+          // 1. Trigger Form Validation
+          if (eventProvider.formKey.currentState?.validate() != true) {
             return;
           }
+
+          // 2. Additional logic checks
+          if (eventProvider.selectedDate == null ||
+              eventProvider.selectedTime == null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Please select date and time")),
+            );
+            return;
+          }
+
+          String title = eventProvider.titleController.text;
+          String description = eventProvider.descriptionController.text;
 
           final fullDateTime = DateTime(
             eventProvider.selectedDate!.year,

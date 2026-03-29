@@ -82,4 +82,5 @@ class StringsManager {
   static String get logoutConfirmation => "logoutConfirmation".tr();
   static String get cancel => "cancel".tr();
   static String get yes => "yes".tr();
+  static String get eventTitleRequired => "eventTitleRequired".tr();
 }

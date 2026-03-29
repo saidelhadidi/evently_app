@@ -3,18 +3,20 @@ import '../core/constants/categories_list.dart';
 import '../core/models/event_model.dart';
 
 class EventProvider extends ChangeNotifier {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String selectedCategoryId = CategoriesList.categories[1].id;
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
   bool isFavourite = false;
-  String searchQuery="";
+  String searchQuery = "";
 
   List<EventModel> allEvents = [];
   List<EventModel> searchFavResult = [];
+
   void searchFavEvents(String query) {
-    searchQuery=query;
+    searchQuery = query;
     if (query.isEmpty) {
       searchFavResult = favEvents;
     } else {

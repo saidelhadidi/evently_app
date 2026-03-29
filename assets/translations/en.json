@@ -73,5 +73,6 @@
   "logoutTitle": "Logout",
   "logoutConfirmation": "Are you sure you want to logout?",
   "cancel": "Cancel",
-  "yes": "Yes"
+  "yes": "Yes",
+  "eventTitleRequired": "Event title is required"
 }

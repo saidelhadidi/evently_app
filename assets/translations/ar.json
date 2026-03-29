@@ -73,5 +73,6 @@
   "logoutTitle": "تسجيل الخروج",
   "logoutConfirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
   "cancel": "إلغاء",
-  "yes": "نعم"
+  "yes": "نعم",
+  "eventTitleRequired": "عنوان الحدث مطلوب"
 }
