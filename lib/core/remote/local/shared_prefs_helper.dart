@@ -47,12 +47,12 @@ class SharedPrefsHelper {
     return prefs.getBool(loginKey) ?? false;
   }
 
-  static Future<void> saveProfileImagePath(String email, String path) async {
+  static Future<void> saveProfileImageName(String email, String fileName) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("$profileImagePrefix$email", path);
+    await prefs.setString("$profileImagePrefix$email", fileName);
   }
 
-  static Future<String?> getProfileImagePath(String email) async {
+  static Future<String?> getProfileImageName(String email) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString("$profileImagePrefix$email");
   }

@@ -75,4 +75,11 @@ class StringsManager {
   static String get invalidCredentials => "invalidCredentials".tr();
   static String get userNotFound => "userNotFound".tr();
   static String get or => "or".tr();
+  static String get passwordResetEmailSent => "passwordResetEmailSent".tr();
+  static String get checkYourInbox => "checkYourInbox".tr();
+  static String get backToLogin => "backToLogin".tr();
+  static String get logoutTitle => "logoutTitle".tr();
+  static String get logoutConfirmation => "logoutConfirmation".tr();
+  static String get cancel => "cancel".tr();
+  static String get yes => "yes".tr();
 }

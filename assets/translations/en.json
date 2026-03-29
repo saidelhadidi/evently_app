@@ -66,5 +66,12 @@
   "somethingWentWrong": "Something went wrong, please try again.",
   "invalidCredentials": "Invalid email or password.",
   "userNotFound": "This email is not registered.",
-  "or": "Or"
+  "or": "Or",
+  "passwordResetEmailSent": "Password reset email sent. ",
+  "checkYourInbox": "Please check your inbox.",
+  "backToLogin": "Back to login",
+  "logoutTitle": "Logout",
+  "logoutConfirmation": "Are you sure you want to logout?",
+  "cancel": "Cancel",
+  "yes": "Yes"
 }

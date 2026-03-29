@@ -33,6 +33,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTapOutside: (e){FocusScope.of(context).unfocus();},
       obscureText: isObscure,
       maxLines: maxLines,
       minLines: minLines,

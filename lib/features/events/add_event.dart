@@ -31,22 +31,22 @@ class AddEvent extends StatelessWidget {
           title: Text(StringsManager.addEvent),
         ),
         body: SafeArea(
-          child: Column(
-            children: [
-              Consumer<EventProvider>(
-                builder: (context, eventProvider, child) {
-                  final selectedCategory = CategoriesList.categories.firstWhere(
-                    (category) =>
-                        category.id == eventProvider.selectedCategoryId,
-                    orElse: () => CategoriesList.categories[1],
-                  );
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Consumer<EventProvider>(
+                  builder: (context, eventProvider, child) {
+                    final selectedCategory = CategoriesList.categories.firstWhere(
+                      (category) =>
+                          category.id == eventProvider.selectedCategoryId,
+                      orElse: () => CategoriesList.categories[1],
+                    );
 
-                  return HeaderPicture(category: selectedCategory);
-                },
-              ),
-              SelectCategoryList(),
-              Expanded(
-                child: SingleChildScrollView(
+                    return HeaderPicture(category: selectedCategory);
+                  },
+                ),
+                SelectCategoryList(),
+                Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: .start,
@@ -88,10 +88,10 @@ class AddEvent extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
 
-              AddEventButton(),
-            ],
+                AddEventButton(),
+              ],
+            ),
           ),
         ),
       ),

@@ -97,4 +97,30 @@ class AuthProvider extends ChangeNotifier {
       return StringsManager.somethingWentWrong;
     }
   }
+
+  Future<String?> resetPassword(String email) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      // It's a good habit to trim whitespace from the email
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email.trim());
+
+      _isLoading = false;
+      notifyListeners();
+      return null; // Success - Firebase thinks it sent the mail
+    } on FirebaseAuthException catch (e) {
+      _isLoading = false;
+      notifyListeners();
+
+      if (e.code == 'user-not-found' || e.code == 'invalid-email') {
+        return StringsManager.userNotFound;
+      }
+      return StringsManager.somethingWentWrong;
+    } catch (e) {
+      _isLoading = false;
+      notifyListeners();
+      return StringsManager.somethingWentWrong;
+    }
+  }
 }

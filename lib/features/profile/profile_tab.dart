@@ -9,6 +9,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
@@ -29,21 +31,24 @@ class _ProfileTabState extends State<ProfileTab> {
 
   Future<void> _loadProfileImage() async {
     if (user?.email != null) {
-      String? savedPath =
-          await SharedPrefsHelper.getProfileImagePath(user!.email!);
-      if (savedPath != null && mounted) {
-        setState(() {
-          _imagePath = savedPath;
-        });
+      String? fileName =
+          await SharedPrefsHelper.getProfileImageName(user!.email!);
+      if (fileName != null) {
+        final directory = await getApplicationDocumentsDirectory();
+        final path = p.join(directory.path, fileName);
+        if (await File(path).exists() && mounted) {
+          setState(() {
+            _imagePath = path;
+          });
+        }
       }
     }
   }
 
   Future<void> _pickAndCropImage() async {
-    // 1. Capture primary color before any async gap to satisfy the linter
     final Color primaryColor = Theme.of(context).primaryColor;
+    final ImagePicker picker = ImagePicker();
 
-    // 2. Show bottom sheet to choose action
     final String? action = await showModalBottomSheet<String>(
       context: context,
       builder: (context) => SafeArea(
@@ -75,7 +80,7 @@ class _ProfileTabState extends State<ProfileTab> {
 
     if (action == 'remove') {
       if (user?.email != null) {
-        await SharedPrefsHelper.saveProfileImagePath(user!.email!, "");
+        await SharedPrefsHelper.saveProfileImageName(user!.email!, "");
         setState(() {
           _imagePath = null;
         });
@@ -83,15 +88,12 @@ class _ProfileTabState extends State<ProfileTab> {
       return;
     }
 
-    // 3. Pick the image
-    final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(
       source: action == 'gallery' ? ImageSource.gallery : ImageSource.camera,
     );
 
     if (!mounted || image == null) return;
 
-    // 4. Crop the image
     final croppedFile = await ImageCropper().cropImage(
       sourcePath: image.path,
       uiSettings: [
@@ -111,14 +113,51 @@ class _ProfileTabState extends State<ProfileTab> {
 
     if (!mounted || croppedFile == null) return;
 
-    // 5. Save and update state
-    if (user?.email != null) {
-      await SharedPrefsHelper.saveProfileImagePath(
-          user!.email!, croppedFile.path);
-      setState(() {
-        _imagePath = croppedFile.path;
-      });
-    }
+    final directory = await getApplicationDocumentsDirectory();
+    final String extension = p.extension(croppedFile.path);
+    final String fileName = "profile_${user!.email}$extension";
+    final String permanentPath = p.join(directory.path, fileName);
+
+    await File(croppedFile.path).copy(permanentPath);
+    await SharedPrefsHelper.saveProfileImageName(user!.email!, fileName);
+
+    setState(() {
+      _imagePath = permanentPath;
+    });
+  }
+
+  void _showLogoutConfirmation() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(StringsManager.logoutTitle),
+        content: Text(StringsManager.logoutConfirmation),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(StringsManager.cancel),
+          ),
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context); // Close dialog
+              await FirebaseAuth.instance.signOut();
+              await SharedPrefsHelper.saveLoginStatus(false);
+              if (mounted) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  LogInScreen.routeName,
+                  (route) => false,
+                );
+              }
+            },
+            child: Text(
+              StringsManager.yes,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -136,18 +175,15 @@ class _ProfileTabState extends State<ProfileTab> {
                   alignment: Alignment.bottomRight,
                   children: [
                     CircleAvatar(
-                      radius: 70,
+                      radius: 80,
                       backgroundColor:
-                          Theme.of(context).primaryColor.withValues(alpha: 0.1),
+                          Theme.of(context).primaryColor.withOpacity(0.1),
                       backgroundImage: _imagePath != null
                           ? FileImage(File(_imagePath!))
                           : null,
                       child: _imagePath == null
-                          ? Icon(
-                              Icons.person,
-                              size: 80,
-                              color: Theme.of(context).primaryColor,
-                            )
+                          ? Icon(Icons.person,
+                              size: 80, color: Theme.of(context).primaryColor)
                           : null,
                     ),
                     CircleAvatar(
@@ -170,17 +206,7 @@ class _ProfileTabState extends State<ProfileTab> {
               const DarkSwitcher(),
               const ChangeLanguageOption(),
               ProfileMenuTile(
-                onTap: () async {
-                  await FirebaseAuth.instance.signOut();
-                  await SharedPrefsHelper.saveLoginStatus(false);
-                  if (context.mounted) {
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      LogInScreen.routeName,
-                      (route) => false,
-                    );
-                  }
-                },
+                onTap: _showLogoutConfirmation,
                 title: StringsManager.logout,
                 trailingWidget: Icon(
                   Icons.logout,
