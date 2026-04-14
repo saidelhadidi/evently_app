@@ -18,7 +18,7 @@ class AppTheme {
       onSurface: AppColors.lightMainText,
       error: AppColors.lightRed,
     ),
-    dividerTheme: DividerThemeData(thickness: 1, color: AppColors.lightStroke),
+    dividerTheme: const DividerThemeData(thickness: 1, color: AppColors.lightStroke),
     // text
     textTheme: const TextTheme(
       titleLarge: TextStyle(
@@ -96,7 +96,7 @@ class AppTheme {
       onSurface: AppColors.darkMainText,
       error: AppColors.darkRed,
     ),
-    dividerTheme: DividerThemeData(thickness: 1, color: AppColors.darkStroke),
+    dividerTheme: const DividerThemeData(thickness: 1, color: AppColors.darkStroke),
     //text
     textTheme: const TextTheme(
       titleLarge: TextStyle(

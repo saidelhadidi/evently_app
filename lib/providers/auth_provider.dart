@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:evently_app/core/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:evently_app/core/remote/network/firestore_service.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool _isPasswordObscured = true;
@@ -42,7 +43,14 @@ class AuthProvider extends ChangeNotifier {
       );
       
       await credential.user?.updateDisplayName(name);
-      
+      // 1. اصطياد الـ ID بشكل صحيح (علامة التعجب عشان نأكد لفلاتر إن اليوزر مش بـ null)
+      String uid = credential.user!.uid;
+      await FirestoreService().saveUserData(
+        uid: uid,
+        userName: name,
+        email: email,
+      );
+
       _isLoading = false;
       notifyListeners();
       return null;

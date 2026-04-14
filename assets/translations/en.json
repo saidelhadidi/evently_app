@@ -1,6 +1,6 @@
 {
   "language": "Language",
-  "arabic": "Arabic",
+  "arabic": "العربية",
   "english": "English",
   "theme": "Theme",
   "skip": "Skip",
@@ -74,5 +74,8 @@
   "logoutConfirmation": "Are you sure you want to logout?",
   "cancel": "Cancel",
   "yes": "Yes",
+  "deleteAccount": "Delete Account",
+  "deleteAccountTitle": "Delete Account",
+  "deleteAccountConfirmation": "Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently removed.",
   "eventTitleRequired": "Event title is required"
 }

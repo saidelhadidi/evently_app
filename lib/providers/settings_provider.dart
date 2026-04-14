@@ -11,12 +11,13 @@ class SettingsProvider extends ChangeNotifier {
   }
 
   Future<void> _loadSettingsFromPrefs() async {
+    // Load Theme
     bool isDark = await SharedPrefsHelper.getCurrentTheme();
     currentTheme = isDark ? ThemeMode.dark : ThemeMode.light;
-    String lang = await SharedPrefsHelper.getLanguage();
-    isEnglish = lang == "en";
-    
     notifyListeners();
+  }
+  void initLanguage(BuildContext context) {
+    isEnglish = context.locale.languageCode == 'en';
   }
 
   void changeTheme(ThemeMode newTheme) {
@@ -32,8 +33,6 @@ class SettingsProvider extends ChangeNotifier {
     
     String langCode = isEnglish ? "en" : "ar";
     context.setLocale(Locale(langCode));
-    SharedPrefsHelper.saveLanguage(langCode);
-    
     notifyListeners();
   }
 }

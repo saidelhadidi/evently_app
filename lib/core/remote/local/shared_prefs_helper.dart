@@ -37,23 +37,16 @@ class SharedPrefsHelper {
     return prefs.getString(languageKey) ?? "en";
   }
 
-  static Future<void> saveLoginStatus(bool isLoggedIn) async {
+  static Future<void> saveProfileImageName(
+    String uid,
+    String fileName,
+  ) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(loginKey, isLoggedIn);
+    await prefs.setString("$profileImagePrefix$uid", fileName);
   }
 
-  static Future<bool> getLoginStatus() async {
+  static Future<String?> getProfileImageName(String uid) async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(loginKey) ?? false;
-  }
-
-  static Future<void> saveProfileImageName(String email, String fileName) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("$profileImagePrefix$email", fileName);
-  }
-
-  static Future<String?> getProfileImageName(String email) async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString("$profileImagePrefix$email");
+    return prefs.getString("$profileImagePrefix$uid");
   }
 }

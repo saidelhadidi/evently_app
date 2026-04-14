@@ -1,7 +1,7 @@
 {
   "language": "اللغة",
   "arabic": "العربية",
-  "english": "الإنجليزية",
+  "english": "English",
   "theme": "المظهر",
   "skip": "تخطي",
   "startScreenTitle": "خصص تجربتك",
@@ -20,7 +20,7 @@
   "loginWithGoogle": "تسجيل الدخول باستخدام جوجل",
   "signupWithGoogle": "إنشاء حساب باستخدام جوجل",
   "resetPassword": "إعادة تعيين كلمة المرور",
-  "resetPasswordScreenTitle": "نسيان كلمة المرور",
+  "resetPasswordScreenTitle": "إعادة تعيين كلمة المرور",
   "home": "الرئيسية",
   "favourite": "المفضلة",
   "profile": "الملف الشخصي",
@@ -74,5 +74,8 @@
   "logoutConfirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
   "cancel": "إلغاء",
   "yes": "نعم",
+  "deleteAccount": "حذف الحساب",
+  "deleteAccountTitle": "حذف الحساب",
+  "deleteAccountConfirmation": "هل أنت متأكد أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء وسيتم إزالة جميع بياناتك بشكل دائم.",
   "eventTitleRequired": "عنوان الحدث مطلوب"
 }

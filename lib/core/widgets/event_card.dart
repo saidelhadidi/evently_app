@@ -1,11 +1,11 @@
 import 'package:evently_app/core/models/event_model.dart';
 import 'package:evently_app/core/resources/size_manager.dart';
-import 'package:evently_app/features/events/event_details.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../../providers/event_provider.dart';
 import '../../providers/settings_provider.dart';
+import '../../ui/events/event_details.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({super.key, required this.event});
@@ -14,8 +14,10 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<SettingsProvider>(context);
-    final isDark = provider.currentTheme == ThemeMode.dark;
+    final settingsProvider = Provider.of<SettingsProvider>(context);
+    final eventProvider = Provider.of<EventProvider>(context);
+    final isFavorite = eventProvider.favoriteEventIds.contains(event.id);
+    final isDark = settingsProvider.currentTheme == ThemeMode.dark;
     final imagePath = isDark
         ? event.category.darkImage
         : event.category.lightImage;
@@ -93,13 +95,10 @@ class EventCard extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Provider.of<EventProvider>(
-                          context,
-                          listen: false,
-                        ).toggleFavorite(event.id);
+                        eventProvider.toggleFavorite(event.id);
                       },
                       child: Icon(
-                        event.isFavorite
+                        isFavorite
                             ? Icons.favorite
                             : Icons.favorite_border,
                         color: Theme.of(context).primaryColor,

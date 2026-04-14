@@ -22,15 +22,21 @@ dependencies:
   easy_localization: ^3.0.8
   firebase_auth: ^6.3.0
   firebase_core: ^4.6.0
+  cloud_firestore: ^6.2.0
+  firebase_storage: ^13.2.0
   image_picker: ^1.1.2
-  image_cropper: ^8.0.2
+  image_cropper: ^12.1.1
   path_provider: ^2.1.5
   path: ^1.9.0
+  supabase_flutter: ^2.12.2
+  google_sign_in: ^7.2.0
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+
 
 flutter:
   uses-material-design: true
@@ -53,3 +59,8 @@ flutter:
           - asset: assets/fonts/Poppins/Poppins-Regular.ttf
           - asset: assets/fonts/Poppins/Poppins-Bold.ttf
             weight: 700
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21

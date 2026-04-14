@@ -50,3 +50,11 @@ ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
 macos/Runner/GoogleService-Info.plist
 firebase.json
+
+# 2. CocoaPods & iOS/macOS Generated Files
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Flutter.framework/
+**/ios/Flutter/Flutter.podspec
+**/macos/Pods/
+**/macos/Flutter/ephemeral/

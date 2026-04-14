@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Evently App</string>
+	<string>Evently</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -73,5 +73,16 @@
     	<string>en</string>
     	<string>nb</string>
     </array>
+    <key>CFBundleURLTypes</key>
+    	<array>
+    		<dict>
+    			<key>CFBundleTypeRole</key>
+    			<string>Editor</string>
+    			<key>CFBundleURLSchemes</key>
+    			<array>
+    				<string>com.googleusercontent.apps.994341053740-okg8adsf68cvcoocq4fa44ilicgqi8sp</string>
+    			</array>
+    		</dict>
+    	</array>
 </dict>
 </plist>
